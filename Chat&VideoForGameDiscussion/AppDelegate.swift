@@ -8,6 +8,10 @@
 
 import UIKit
 import CoreData
+import GoogleSignIn
+
+let clientID = "283988033299-92g0skd7r5kne9drif1po7lq3uvm491l.apps.googleusercontent.com"
+let apiKey = "AIzaSyB7af9YUCzQWcjzE5gDwzf1c5V1HLzX9zY"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,6 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+
+    //    MARK: open Google secheme
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        guard let sourceApp = options[.sourceApplication] as? String else {
+            return false
+        }
+        
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApp, annotation: options[.annotation])
     }
 
     // MARK: - Core Data stack
