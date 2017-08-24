@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04120CA41F4EB298002AD5C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CA31F4EB298002AD5C3 /* AppDelegate.swift */; };
+		04120CA61F4EB298002AD5C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CA51F4EB298002AD5C3 /* ViewController.swift */; };
+		04120CA91F4EB298002AD5C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04120CA71F4EB298002AD5C3 /* Main.storyboard */; };
+		04120CAC1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04120CAA1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld */; };
+		04120CAE1F4EB298002AD5C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04120CAD1F4EB298002AD5C3 /* Assets.xcassets */; };
+		04120CB11F4EB298002AD5C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04120CAF1F4EB298002AD5C3 /* LaunchScreen.storyboard */; };
+		DE2697C31B94873BF7555ABC /* Pods_Chat_VideoForGameDiscussion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		04120CA01F4EB298002AD5C3 /* Chat&VideoForGameDiscussion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chat&VideoForGameDiscussion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04120CA31F4EB298002AD5C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		04120CA51F4EB298002AD5C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		04120CA81F4EB298002AD5C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		04120CAB1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat_VideoForGameDiscussion.xcdatamodel; sourceTree = "<group>"; };
+		04120CAD1F4EB298002AD5C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04120CB01F4EB298002AD5C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		04120CB21F4EB298002AD5C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_VideoForGameDiscussion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9095736FD385D6D412722701 /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.release.xcconfig"; sourceTree = "<group>"; };
+		B47DF8F71E30D42FD911597C /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04120C9D1F4EB298002AD5C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE2697C31B94873BF7555ABC /* Pods_Chat_VideoForGameDiscussion.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04120C971F4EB297002AD5C3 = {
+			isa = PBXGroup;
+			children = (
+				04120CA21F4EB298002AD5C3 /* Chat&VideoForGameDiscussion */,
+				04120CA11F4EB298002AD5C3 /* Products */,
+				99C33A1176362DCF936AA0BE /* Pods */,
+				743AAD42E7123556E61938FA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		04120CA11F4EB298002AD5C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04120CA01F4EB298002AD5C3 /* Chat&VideoForGameDiscussion.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04120CA21F4EB298002AD5C3 /* Chat&VideoForGameDiscussion */ = {
+			isa = PBXGroup;
+			children = (
+				04120CA31F4EB298002AD5C3 /* AppDelegate.swift */,
+				04120CA51F4EB298002AD5C3 /* ViewController.swift */,
+				04120CA71F4EB298002AD5C3 /* Main.storyboard */,
+				04120CAD1F4EB298002AD5C3 /* Assets.xcassets */,
+				04120CAF1F4EB298002AD5C3 /* LaunchScreen.storyboard */,
+				04120CB21F4EB298002AD5C3 /* Info.plist */,
+				04120CAA1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld */,
+			);
+			path = "Chat&VideoForGameDiscussion";
+			sourceTree = "<group>";
+		};
+		743AAD42E7123556E61938FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99C33A1176362DCF936AA0BE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B47DF8F71E30D42FD911597C /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */,
+				9095736FD385D6D412722701 /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04120C9F1F4EB298002AD5C3 /* Chat&VideoForGameDiscussion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04120CB51F4EB298002AD5C3 /* Build configuration list for PBXNativeTarget "Chat&VideoForGameDiscussion" */;
+			buildPhases = (
+				BBA163951CB5A0F61AC56C42 /* [CP] Check Pods Manifest.lock */,
+				04120C9C1F4EB298002AD5C3 /* Sources */,
+				04120C9D1F4EB298002AD5C3 /* Frameworks */,
+				04120C9E1F4EB298002AD5C3 /* Resources */,
+				1F0D93A59757CF766903B282 /* [CP] Embed Pods Frameworks */,
+				9893257FA2D1F836959FFA23 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Chat&VideoForGameDiscussion";
+			productName = "Chat&VideoForGameDiscussion";
+			productReference = 04120CA01F4EB298002AD5C3 /* Chat&VideoForGameDiscussion.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04120C981F4EB297002AD5C3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Uran;
+				TargetAttributes = {
+					04120C9F1F4EB298002AD5C3 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = SCFU5W6M6J;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 04120C9B1F4EB297002AD5C3 /* Build configuration list for PBXProject "Chat&VideoForGameDiscussion" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04120C971F4EB297002AD5C3;
+			productRefGroup = 04120CA11F4EB298002AD5C3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04120C9F1F4EB298002AD5C3 /* Chat&VideoForGameDiscussion */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04120C9E1F4EB298002AD5C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04120CB11F4EB298002AD5C3 /* LaunchScreen.storyboard in Resources */,
+				04120CAE1F4EB298002AD5C3 /* Assets.xcassets in Resources */,
+				04120CA91F4EB298002AD5C3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F0D93A59757CF766903B282 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9893257FA2D1F836959FFA23 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBA163951CB5A0F61AC56C42 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04120C9C1F4EB298002AD5C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04120CAC1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld in Sources */,
+				04120CA61F4EB298002AD5C3 /* ViewController.swift in Sources */,
+				04120CA41F4EB298002AD5C3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		04120CA71F4EB298002AD5C3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04120CA81F4EB298002AD5C3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		04120CAF1F4EB298002AD5C3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04120CB01F4EB298002AD5C3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		04120CB31F4EB298002AD5C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04120CB41F4EB298002AD5C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		04120CB61F4EB298002AD5C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B47DF8F71E30D42FD911597C /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SCFU5W6M6J;
+				INFOPLIST_FILE = "Chat&VideoForGameDiscussion/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uran.Chat-VideoForGameDiscussion";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		04120CB71F4EB298002AD5C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9095736FD385D6D412722701 /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SCFU5W6M6J;
+				INFOPLIST_FILE = "Chat&VideoForGameDiscussion/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uran.Chat-VideoForGameDiscussion";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04120C9B1F4EB297002AD5C3 /* Build configuration list for PBXProject "Chat&VideoForGameDiscussion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04120CB31F4EB298002AD5C3 /* Debug */,
+				04120CB41F4EB298002AD5C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04120CB51F4EB298002AD5C3 /* Build configuration list for PBXNativeTarget "Chat&VideoForGameDiscussion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04120CB61F4EB298002AD5C3 /* Debug */,
+				04120CB71F4EB298002AD5C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		04120CAA1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04120CAB1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodel */,
+			);
+			currentVersion = 04120CAB1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodel */;
+			path = Chat_VideoForGameDiscussion.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 04120C981F4EB297002AD5C3 /* Project object */;
+}

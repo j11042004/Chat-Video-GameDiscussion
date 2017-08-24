@@ -1,0 +1,6 @@
+framework module Pods_Chat_VideoForGameDiscussion {
+  umbrella header "Pods-Chat&VideoForGameDiscussion-umbrella.h"
+
+  export *
+  module * { export * }
+}
