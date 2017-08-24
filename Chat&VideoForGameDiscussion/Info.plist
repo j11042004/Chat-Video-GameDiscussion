@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>取用相機以支援拍照功能</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>從相簿取出照片，或存入照片至相簿功能</string>
 </dict>
 </plist>

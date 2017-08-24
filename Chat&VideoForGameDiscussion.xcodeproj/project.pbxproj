@@ -13,6 +13,10 @@
 		04120CAC1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04120CAA1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld */; };
 		04120CAE1F4EB298002AD5C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04120CAD1F4EB298002AD5C3 /* Assets.xcassets */; };
 		04120CB11F4EB298002AD5C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04120CAF1F4EB298002AD5C3 /* LaunchScreen.storyboard */; };
+		04120CBA1F4ED542002AD5C3 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CB81F4ED542002AD5C3 /* MessageTableViewCell.swift */; };
+		04120CBB1F4ED542002AD5C3 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CB91F4ED542002AD5C3 /* ImageTableViewCell.swift */; };
+		04120CBD1F4ED554002AD5C3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CBC1F4ED554002AD5C3 /* ChatViewController.swift */; };
+		04120CBF1F4EDA23002AD5C3 /* ResizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CBE1F4EDA23002AD5C3 /* ResizeImage.swift */; };
 		DE2697C31B94873BF7555ABC /* Pods_Chat_VideoForGameDiscussion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +29,10 @@
 		04120CAD1F4EB298002AD5C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04120CB01F4EB298002AD5C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04120CB21F4EB298002AD5C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04120CB81F4ED542002AD5C3 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		04120CB91F4ED542002AD5C3 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		04120CBC1F4ED554002AD5C3 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		04120CBE1F4EDA23002AD5C3 /* ResizeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeImage.swift; sourceTree = "<group>"; };
 		85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_VideoForGameDiscussion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9095736FD385D6D412722701 /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.release.xcconfig"; sourceTree = "<group>"; };
 		B47DF8F71E30D42FD911597C /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +73,10 @@
 			children = (
 				04120CA31F4EB298002AD5C3 /* AppDelegate.swift */,
 				04120CA51F4EB298002AD5C3 /* ViewController.swift */,
+				04120CBC1F4ED554002AD5C3 /* ChatViewController.swift */,
+				04120CB81F4ED542002AD5C3 /* MessageTableViewCell.swift */,
+				04120CB91F4ED542002AD5C3 /* ImageTableViewCell.swift */,
+				04120CBE1F4EDA23002AD5C3 /* ResizeImage.swift */,
 				04120CA71F4EB298002AD5C3 /* Main.storyboard */,
 				04120CAD1F4EB298002AD5C3 /* Assets.xcassets */,
 				04120CAF1F4EB298002AD5C3 /* LaunchScreen.storyboard */,
@@ -216,7 +228,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				04120CAC1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld in Sources */,
+				04120CBA1F4ED542002AD5C3 /* MessageTableViewCell.swift in Sources */,
+				04120CBB1F4ED542002AD5C3 /* ImageTableViewCell.swift in Sources */,
+				04120CBF1F4EDA23002AD5C3 /* ResizeImage.swift in Sources */,
 				04120CA61F4EB298002AD5C3 /* ViewController.swift in Sources */,
+				04120CBD1F4ED554002AD5C3 /* ChatViewController.swift in Sources */,
 				04120CA41F4EB298002AD5C3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +401,7 @@
 				04120CB71F4EB298002AD5C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
