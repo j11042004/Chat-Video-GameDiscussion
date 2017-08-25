@@ -14,7 +14,7 @@ import MobileCoreServices
 let EMIT_CHAT_MESSAGE = "chat message"
 let CHANGE_USER_NAME = "change nickname"
 let SEND_IMAGE = "sendImage"
-class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewDataSource , UIImagePickerControllerDelegate , UINavigationControllerDelegate {
+class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewDataSource , UIImagePickerControllerDelegate , UINavigationControllerDelegate, UITextFieldDelegate {
 
 //    @IBOutlet weak var inputMessage: UITextField!
 //    @IBOutlet weak var tableView: UITableView!
@@ -50,6 +50,9 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
 
         // When some thing Add in the chat room
         addMessageHandles()
+        
+        // tableView add a tap event
+        tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
 
     }
 
@@ -302,6 +305,20 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         return 2048
     }
 
+    // MARK: - close the keyBoard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    // touch event function
+    func handleTap(sender: UITapGestureRecognizer) {
+        // must do the check ,otherwise the celle selected func will not do everyThing
+        if sender.state == .ended {
+            inputMsgField.resignFirstResponder()
+        }
+        sender.cancelsTouchesInView = false
+        
+    }
     /*
     // MARK: - Navigation
 

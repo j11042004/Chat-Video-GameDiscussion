@@ -41,7 +41,7 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
         
         // Add a GIDSignInButton
         signInButton = GIDSignInButton()
-        signInButton.center = logoutBtn.center
+        signInButton.center = CGPoint.init(x: view.frame.width/2, y: logoutBtn.center.y)
         view.addSubview(signInButton)
         
         
@@ -50,6 +50,8 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
             if check {
                 signIn?.signIn()
                 signInButton.isHidden = true
+            }else{
+                hiddAction(trueOrFalse: false)
             }
         }
     }
@@ -118,7 +120,12 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
     }
 
     
-    
+    func hiddAction(trueOrFalse : Bool) {
+        signInButton.isHidden = trueOrFalse
+        logoutBtn.isHidden = !trueOrFalse
+        waitingCircle.isHidden = !trueOrFalse
+        coverdView.isHidden = !trueOrFalse
+    }
     
     
     
@@ -136,7 +143,7 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
         youtubeService.authorizer = user.authentication?.fetcherAuthorizer()
         // Must to get the user's authorizer before to request the user's playlist
         getUserPlayLists()
-        signInButton.isHidden = true
+        hiddAction(trueOrFalse: true)
 
         
         
@@ -150,8 +157,9 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
         }
         
         NSLog("User Disconnect")
-
-        signInButton.isHidden = false
+        userPlayLists = [[String:String]]()
+        self.playlistTableview.reloadData()
+        hiddAction(trueOrFalse: false)
     }
     
 // MARK: - Tableview datasource function
@@ -183,16 +191,16 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        /*
-        guard let nextPage = storyboard?.instantiateViewController(withIdentifier: "PlistVideosViewController") as? PlistVideosViewController  else {
+        
+        guard let nextPage = storyboard?.instantiateViewController(withIdentifier: "PlaylistVideoTableViewController") as? PlaylistVideoTableViewController  else {
             print("nextPage is nil")
             return
         }
-        */
-//        nextPage.userPlayList = userPlayLists[indexPath.row]
         
-//        navigationController?.pushViewController(nextPage, animated:true)
+        nextPage.userPlayList = userPlayLists[indexPath.row]
+        nextPage.youtuvbeService = youtubeService
+        
+        navigationController?.pushViewController(nextPage, animated:true)
         
     }
     

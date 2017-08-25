@@ -1,18 +1,17 @@
 //
-//  ImageTableViewCell.swift
-//  SockitIOTest
+//  PlaylistVideoTableViewCell.swift
+//  Chat&VideoForGameDiscussion
 //
-//  Created by Uran on 2017/8/11.
+//  Created by Uran on 2017/8/25.
 //  Copyright © 2017年 Uran. All rights reserved.
 //
 
 import UIKit
 
-class ImageTableViewCell: UITableViewCell {
+class PlaylistVideoTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var msgImage: UIImageView!
-    var origoBase64 = ""
+    @IBOutlet weak var videoThumbnail: UIImageView!
+    @IBOutlet weak var videoTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,7 +19,7 @@ class ImageTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
     }
 
