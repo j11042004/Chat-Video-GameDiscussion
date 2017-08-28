@@ -19,15 +19,15 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
     @IBOutlet weak var waitingCircle: UIActivityIndicatorView!
     @IBOutlet weak var coverdView: UIView!
     
-    private let signIn = GIDSignIn.sharedInstance()
+    private let youtubeService = YoutubeUserInfo.standard.youtubeService
+    private let signIn = YoutubeUserInfo.standard.signIn
     //    Set request Authorize
     private let scopes = [kGTLRAuthScopeYouTubeReadonly,kGTLRAuthScopeYouTubeForceSsl,kGTLRAuthScopeYouTubeYoutubepartner,kGTLRAuthScopeYouTube]
     private var signInButton = GIDSignInButton()
     
-    private let youtubeService = GTLRYouTubeService()
     private var userPlayLists = [[String : String]]()
     
-    
+    let defaults = YoutubeUserInfo.standard.defaults
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,13 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
         signInButton = GIDSignInButton()
         signInButton.center = CGPoint.init(x: view.frame.width/2, y: logoutBtn.center.y)
         view.addSubview(signInButton)
-        
-        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    override func viewWillAppear(_ animated: Bool) {
         // Check User had Login or not to get AuthInKeychain
         if let check = signIn?.hasAuthInKeychain() {
             if check {
@@ -54,13 +59,8 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
                 hiddAction(trueOrFalse: false)
             }
         }
+
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 // MARK: - Button action
     @IBAction func logoutBtnAction(_ sender: Any) {
         signIn?.signOut()
@@ -71,7 +71,6 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
     
     //MARK: Youtube request function
     func getUserPlayLists(){
-        print("run")
         // play list request query
         let playListsQuery = GTLRYouTubeQuery_PlaylistsList.query(withPart: "contentDetails, snippet")
         // Set to get user's playLists
@@ -95,6 +94,7 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
             var playlist = [String : String]()
             if let playlistID = item.identifier {
                 playlist["playlistID"] = playlistID
+                
             }
             if let thumbnailURL = item.snippet?.thumbnails?.defaultProperty?.url {
                 playlist["thumbnailURL"] = thumbnailURL
@@ -109,8 +109,17 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
         }
         // Reload TableView
         DispatchQueue.main.async {
-//MARK: = Fixed add a object to get the playlist
+            // set the playlist to userDefault
+            self.defaults.removeObject(forKey:"userPlaylist")
+            self.defaults.synchronize()
+            
+            self.defaults.set(self.userPlayLists, forKey: "userPlaylist")
+            self.defaults.synchronize()
+            
             self.playlistTableview.reloadData()
+            
+            
+            
         }
         
         DispatchQueue.main.async {
@@ -141,14 +150,17 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
         NSLog("Login Success")
         // Youtube 授權要求
         youtubeService.authorizer = user.authentication?.fetcherAuthorizer()
+        
+        
+        YoutubeUserInfo.standard.defaults.set(true, forKey: "UserHasKeychain")
+        YoutubeUserInfo.standard.defaults.synchronize()
+        
+        
         // Must to get the user's authorizer before to request the user's playlist
         getUserPlayLists()
         hiddAction(trueOrFalse: true)
-
-        
-        
     }
-    
+    // Disconnect Function
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!){
         if let error = error {
             NSLog("Sing out Fail : \(error)")
@@ -156,8 +168,17 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
             return
         }
         
+        // remove default's userPlaylist,let it become nil
+        defaults.removeObject(forKey:"userPlaylist")
+        defaults.synchronize()
+        
+        
         NSLog("User Disconnect")
         userPlayLists = [[String:String]]()
+        
+        YoutubeUserInfo.standard.defaults.set(false, forKey: "UserHasKeychain")
+        YoutubeUserInfo.standard.defaults.synchronize()
+        
         self.playlistTableview.reloadData()
         hiddAction(trueOrFalse: false)
     }

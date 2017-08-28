@@ -70,7 +70,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-Sd-ijp">
-                                                    <rect key="frame" x="10" y="5" width="360" height="21"/>
+                                                    <rect key="frame" x="10" y="7" width="360" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -83,10 +83,10 @@
                                                 <constraint firstAttribute="bottom" secondItem="WJp-rf-kAO" secondAttribute="bottom" constant="5" id="0Q5-SH-4K2"/>
                                                 <constraint firstAttribute="trailing" secondItem="oRD-Sd-ijp" secondAttribute="trailing" constant="5" id="8Y3-zY-EER"/>
                                                 <constraint firstItem="WJp-rf-kAO" firstAttribute="leading" secondItem="u7u-Xh-DbW" secondAttribute="leading" constant="25" id="8rX-f9-wvO"/>
-                                                <constraint firstItem="oRD-Sd-ijp" firstAttribute="top" secondItem="u7u-Xh-DbW" secondAttribute="top" constant="5" id="D8Z-1t-0pC"/>
+                                                <constraint firstItem="oRD-Sd-ijp" firstAttribute="top" secondItem="u7u-Xh-DbW" secondAttribute="top" constant="7" id="D8Z-1t-0pC"/>
                                                 <constraint firstItem="oRD-Sd-ijp" firstAttribute="leading" secondItem="u7u-Xh-DbW" secondAttribute="leading" constant="10" id="NuT-eg-TiQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="WJp-rf-kAO" secondAttribute="trailing" constant="5" id="OYP-Ys-Fn1"/>
-                                                <constraint firstItem="WJp-rf-kAO" firstAttribute="top" secondItem="oRD-Sd-ijp" secondAttribute="bottom" constant="10" id="kWV-b0-t26"/>
+                                                <constraint firstItem="WJp-rf-kAO" firstAttribute="top" secondItem="oRD-Sd-ijp" secondAttribute="bottom" constant="8" id="kWV-b0-t26"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -122,7 +122,7 @@
                                 <color key="backgroundColor" red="0.45783838630000001" green="0.98405492309999998" blue="0.99215936660000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Send Picture"/>
                                 <connections>
-                                    <action selector="sendImgBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eno-1s-ttl"/>
+                                    <action selector="sendImgBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SGn-YD-fP7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMM-b2-mvB">
@@ -419,19 +419,78 @@
                                     <action selector="dismissAction:" destination="o32-c5-pX7" eventType="touchUpInside" id="rhp-7F-Mi4"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOj-wc-4DY">
+                                <rect key="frame" x="165" y="398" width="200" height="200"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxs-eh-gTr">
+                                        <rect key="frame" x="0.0" y="170" width="100" height="30"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="dismissAction:" destination="o32-c5-pX7" eventType="touchUpInside" id="f73-Yc-5pq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLn-67-Osp">
+                                        <rect key="frame" x="100" y="170" width="100" height="30"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveInPlaylistBynAction:" destination="o32-c5-pX7" eventType="touchUpInside" id="pGv-fJ-Q81"/>
+                                        </connections>
+                                    </button>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KnA-lL-AoS">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="170"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="o32-c5-pX7" id="odv-U8-sjB"/>
+                                            <outlet property="delegate" destination="o32-c5-pX7" id="iRw-Ia-J67"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="KnA-lL-AoS" secondAttribute="trailing" id="2At-ZM-Iw3"/>
+                                    <constraint firstItem="qxs-eh-gTr" firstAttribute="leading" secondItem="yOj-wc-4DY" secondAttribute="leading" id="6WB-oA-TsX"/>
+                                    <constraint firstItem="KnA-lL-AoS" firstAttribute="leading" secondItem="yOj-wc-4DY" secondAttribute="leading" id="9ty-Jd-xem"/>
+                                    <constraint firstAttribute="trailing" secondItem="vLn-67-Osp" secondAttribute="trailing" id="KDr-5G-1Cy"/>
+                                    <constraint firstAttribute="height" constant="200" id="MvU-1q-cep"/>
+                                    <constraint firstAttribute="width" constant="200" id="aQk-ya-xaV"/>
+                                    <constraint firstItem="qxs-eh-gTr" firstAttribute="top" secondItem="KnA-lL-AoS" secondAttribute="bottom" id="h49-xA-pjp"/>
+                                    <constraint firstAttribute="bottom" secondItem="vLn-67-Osp" secondAttribute="bottom" id="hy1-8v-XMF"/>
+                                    <constraint firstItem="qxs-eh-gTr" firstAttribute="width" secondItem="vLn-67-Osp" secondAttribute="width" id="kY9-Pi-5qI"/>
+                                    <constraint firstItem="vLn-67-Osp" firstAttribute="top" secondItem="KnA-lL-AoS" secondAttribute="bottom" id="l8L-O5-9By"/>
+                                    <constraint firstItem="vLn-67-Osp" firstAttribute="leading" secondItem="qxs-eh-gTr" secondAttribute="trailing" id="oNU-jV-fCF"/>
+                                    <constraint firstItem="KnA-lL-AoS" firstAttribute="top" secondItem="yOj-wc-4DY" secondAttribute="top" id="u1e-jq-k9Q"/>
+                                    <constraint firstAttribute="bottom" secondItem="qxs-eh-gTr" secondAttribute="bottom" id="zDo-hm-IjY"/>
+                                </constraints>
+                            </view>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oX-sv-MYR">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem systemItem="favorites" id="8Kz-4x-uLj"/>
+                                    <tabBarItem systemItem="more" id="hIH-Kn-5yU"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0oX-sv-MYR" secondAttribute="trailing" id="6lJ-5m-r7u"/>
                             <constraint firstItem="g5r-ia-dqF" firstAttribute="top" secondItem="HO9-1g-98y" secondAttribute="bottom" id="EMd-aN-GXP"/>
                             <constraint firstItem="HO9-1g-98y" firstAttribute="top" secondItem="KPV-FF-T0W" secondAttribute="bottom" id="KW9-YB-mTw"/>
+                            <constraint firstItem="0oX-sv-MYR" firstAttribute="leading" secondItem="k9z-Nh-2cV" secondAttribute="leading" id="Sks-EZ-IZR"/>
+                            <constraint firstItem="0oX-sv-MYR" firstAttribute="top" secondItem="yOj-wc-4DY" secondAttribute="bottom" constant="20" id="W78-Ch-X7q"/>
                             <constraint firstAttribute="trailing" secondItem="HO9-1g-98y" secondAttribute="trailing" id="Zzp-Ha-CQ9"/>
+                            <constraint firstItem="g5r-ia-dqF" firstAttribute="top" secondItem="0oX-sv-MYR" secondAttribute="bottom" id="cgp-kc-qZj"/>
                             <constraint firstItem="HO9-1g-98y" firstAttribute="leading" secondItem="k9z-Nh-2cV" secondAttribute="leading" id="iN4-qC-9e5"/>
+                            <constraint firstAttribute="trailing" secondItem="yOj-wc-4DY" secondAttribute="trailing" constant="10" id="m5h-fg-Ggo"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="chooseView" destination="yOj-wc-4DY" id="Of8-PS-QTP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tUy-T3-fzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4258" y="916"/>
+            <point key="canvasLocation" x="4256.8000000000002" y="915.29235382308855"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="453-Ge-Omf">
@@ -444,9 +503,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="L83-yY-dmW" kind="relationship" relationship="viewControllers" id="nWJ-nV-hTO"/>
                         <segue destination="Xye-aP-q3r" kind="relationship" relationship="viewControllers" id="QT0-6c-W5m"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="MSb-8Y-VJr"/>
-                        <segue destination="L83-yY-dmW" kind="relationship" relationship="viewControllers" id="nWJ-nV-hTO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qWc-Zi-thS" userLabel="First Responder" sceneMemberID="firstResponder"/>

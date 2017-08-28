@@ -29,6 +29,7 @@ class PlaylistVideoTableViewController: UITableViewController {
             return
         }
         fetchPlaylistsItemInfo(playListID: playListID)
+        
     }
 
     override func didReceiveMemoryWarning() {

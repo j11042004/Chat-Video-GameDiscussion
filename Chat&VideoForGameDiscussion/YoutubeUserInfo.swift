@@ -7,7 +7,41 @@
 //
 
 import UIKit
+import GoogleAPIClientForREST
+import GTMOAuth2
+import GoogleSignIn
 
-class YoutubeUserInfo: NSObject {
+class YoutubeUserInfo: NSObject,GIDSignInDelegate
+{
+    static let standard = YoutubeUserInfo()
+    
+    var defaults = UserDefaults.standard
+    let youtubeService = GTLRYouTubeService()
+    let signIn = GIDSignIn.sharedInstance()
+    
+    //    Set request Authorize
+    private let scopes = [kGTLRAuthScopeYouTubeReadonly,kGTLRAuthScopeYouTubeForceSsl,kGTLRAuthScopeYouTubeYoutubepartner,kGTLRAuthScopeYouTube]
+
+    
+    
+    func googleSignIn() {
+        signIn?.delegate = self
+        signIn?.clientID = clientID
+        // 要做不然無法跳到權限畫面
+        signIn?.scopes = scopes
+        signIn?.signIn()
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!){
+        if let error = error {
+            NSLog("Sing in Fail : \(error)")
+            return
+        }
+        NSLog("Login Success")
+        // Youtube 授權要求
+        youtubeService.authorizer = user.authentication?.fetcherAuthorizer()
+        
+    }
 
 }

@@ -22,12 +22,11 @@ class YoutubeVideoViewController: UIViewController {
     var videoTitle = ""
     var videoKind = ""
     
+    private var addinPlaylistVC = PlaylistSelectViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        print("Kind: \(videoKind)")
-        print("ID: \(videoID)")
         titleLabel.text = videoTitle
         titleLabel.numberOfLines = 0
         getVideoInformation(videoId: videoID)
@@ -38,7 +37,10 @@ class YoutubeVideoViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        // let addinPlaylist viewController dismiss
+        addinPlaylistVC.dismiss(animated: true, completion: nil)
+    }
    
     @IBAction func addInPlaylistAction(_ sender: Any) {
         
@@ -46,10 +48,11 @@ class YoutubeVideoViewController: UIViewController {
          print("next is nil")
          return
          }
-//         nextPage.insertKind = videoKind
-//         nextPage.insertVideoId = videoID
-         
-         present(nextPage, animated: true, completion: nil)
+        addinPlaylistVC = nextPage
+         nextPage.insertKind = videoKind
+         nextPage.insertVideoId = videoID
+        
+         present(addinPlaylistVC, animated: true, completion: nil)
         
     }
     

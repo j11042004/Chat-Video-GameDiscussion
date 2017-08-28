@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import SocketIO
 import MobileCoreServices
+import Photos
 
 let EMIT_CHAT_MESSAGE = "chat message"
 let CHANGE_USER_NAME = "change nickname"
@@ -36,6 +37,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         super.viewDidLoad()
         
         MAX_FRAME_WIDTH = self.view.frame.size.width - CGFloat(30)
+        resizeImage.setMaxWidth(maxWidth: MAX_FRAME_WIDTH)
         
         // Connect To Socket.io's Chat Room
         socket.connect(timeoutAfter: 20) {
@@ -63,11 +65,11 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     
     override func viewDidDisappear(_ animated: Bool) {
     }
+    // Do something when the app will release
     func applicationWillTerminate(_ application: UIApplication){
         // leave the socket.io chatroom
         socket.disconnect()
     }
-
     
     //  MARK:  Button Action
     // Send Message
@@ -84,8 +86,25 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         inputMsgField.text = ""
     }
     // Send Image
-    @IBAction func sendImgBtn(_ sender: Any) {
-        launchImagePickerWithSourceType(sourceType: .photoLibrary)
+    @IBAction func sendImgBtn(_ sender: UIButton) {
+        
+        let alert = UIAlertController.init(title: "", message: "Choose one", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        let album = UIAlertAction.init(title: "Album", style: .default) { (action) in
+            self.launchImagePickerWithSourceType(sourceType: .photoLibrary)
+        }
+        let camera = UIAlertAction.init(title: "Camera", style: .default) { (action) in
+            self.launchImagePickerWithSourceType(sourceType: .camera)
+        }
+        
+        alert.addAction(album)
+        alert.addAction(camera)
+        alert.addAction(cancel)
+        // 在ipad上要運行popover才可動作
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect.init(x: sender.center.x-20, y: sender.center.y-30, width: self.view.frame.size.width, height: 50)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     @IBAction func changeNameBtn(_ sender: Any) {
         changeNameAlert()
@@ -99,10 +118,12 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         }
         
         let picker = UIImagePickerController()
-        picker.mediaTypes = [kUTTypeImage as String]
+//        picker.mediaTypes = [kUTTypeImage as String]
+        picker.sourceType = sourceType
         picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        // 是否做裁切
-        picker.allowsEditing = true
+        
+        // 是否做裁切，在ipad 上使用會只出現左上角圖，因此不使用
+//        picker.allowsEditing = true
         
         self.present(picker, animated: true, completion: nil)
     }
@@ -120,10 +141,12 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             }
             if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
                 print("editedImage is not nil")
-                inputImage = self.resizeImage.remakeSendImage(originalImage: editedImage)
+                inputImage = editedImage
+                inputImage = self.resizeImage.remakeImageSize(originalImage: editedImage)
             } else{
                 print("editedImage is nil")
-                inputImage = self.resizeImage.remakeSendImage(originalImage: originalImage)
+                inputImage = originalImage
+                inputImage = self.resizeImage.remakeImageSize(originalImage: originalImage)
             }
         }
         // change to jpeg
@@ -140,7 +163,9 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         // Important close the Edite View
         picker.dismiss(animated: true, completion: nil)
     }
-    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
     
     //  MARK:  Soket Action
     // New message add in the socket.io chat room
@@ -244,7 +269,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             print("image is nil")
             return nil
         }
-        let resizeImage = self.resizeImage.remakeGetImage(originalImage: image, maxWidth: MAX_FRAME_WIDTH)
+        let resizeImage = self.resizeImage.remakeImageSize(originalImage: image)
         
         NSLog("image Size")
         print(image.size.height)

@@ -16,13 +16,11 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     private let SEARCH_KINDS = ["youtube#video","youtube#channel","youtube#playlist"]
 
     
-    var youtubeService = GTLRYouTubeService()
+    var youtubeService = YoutubeUserInfo.standard.youtubeService
     var searchResults = [[String : String]]()
     var inputWord = ""
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // tableView add a tap event
+        super.viewDidLoad()        // tableView add a tap event
         tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
     }
 
@@ -43,7 +41,7 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         searchListsQuery.type = "video"
         
         youtubeService.apiKey = apiKey
-        youtubeService.shouldFetchNextPages = shouldFetch
+//        youtubeService.shouldFetchNextPages = shouldFetch
         
         youtubeService.executeQuery(searchListsQuery, delegate: self, didFinish: #selector(analysisSearchList(ticket:searchListResponse:error:)))
     }
@@ -168,6 +166,8 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         }
         let image = StringToImage().stringToImage(inputString: videoInfo["thumbnail"])
         cell.videoThumbnail.image = image
+        
+        print(searchResults.count)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

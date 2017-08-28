@@ -9,29 +9,15 @@
 import UIKit
 
 class ResizeImage: NSObject {
-    private let maxWidth = CGFloat(1024)
+    private var maxWidth = CGFloat(1024)
     
-    // Resize the get Image
-    func remakeGetImage(originalImage: UIImage ,maxWidth:CGFloat) -> UIImage{
-        if originalImage.size.width <= maxWidth {
-            return originalImage
-        }
-        let scale = maxWidth/originalImage.size.width
-        let newHieght = originalImage.size.height * scale
-        // open a canvas space
-        UIGraphicsBeginImageContext(CGSize(width: maxWidth, height: newHieght))
-        // draw the image to resize canvas
-        originalImage.draw(in: CGRect(x: 0, y: 0, width: maxWidth, height: newHieght))
-        guard let resizeImage = UIGraphicsGetImageFromCurrentImageContext() else {
-            print("the resizeImage on the canvas is nil")
-            return originalImage
-        }
-        // close the canvas space
-        UIGraphicsEndImageContext()
-        return resizeImage
+    func setMaxWidth(maxWidth:CGFloat){
+        self.maxWidth = maxWidth
     }
     
-    func remakeSendImage(originalImage: UIImage) -> UIImage{
+    
+    
+    func remakeImageSize(originalImage: UIImage) -> UIImage{
         
         // if originalImage's
         if originalImage.size.width <= maxWidth && originalImage.size.height <= maxWidth{
