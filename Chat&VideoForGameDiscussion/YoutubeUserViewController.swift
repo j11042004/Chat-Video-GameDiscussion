@@ -140,7 +140,7 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
 // MARK: - Normal Function
     func setUserInfo(name: String, imageURL : URL){
         userNameLabel.text = name
-        let image = StringToImage().urlToImage(inputUrl: imageURL)
+        let image = ToImage().urlToImage(inputUrl: imageURL)
         userThumbnailImageView.image = image
     }
     func hiddAction(trueOrFalse : Bool) {
@@ -222,7 +222,7 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
         }else{
             cell.descriptionTextView.text = plistInfo["playlistDescription"]
         }
-        let thumbnailImg = StringToImage().stringToImage(inputString: plistInfo["thumbnailURL"])
+        let thumbnailImg = ToImage().stringToImage(inputString: plistInfo["thumbnailURL"])
         cell.thumbnailImgView.image = thumbnailImg
         return cell
     }

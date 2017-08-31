@@ -164,7 +164,7 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             cell.videoTitle.sizeToFit()
             cell.videoTitle.numberOfLines = 0
         }
-        let image = StringToImage().stringToImage(inputString: videoInfo["thumbnail"])
+        let image = ToImage().stringToImage(inputString: videoInfo["thumbnail"])
         cell.videoThumbnail.image = image
         
         print(searchResults.count)

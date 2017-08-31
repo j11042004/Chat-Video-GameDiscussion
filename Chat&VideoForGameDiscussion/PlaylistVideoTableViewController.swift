@@ -119,7 +119,7 @@ class PlaylistVideoTableViewController: UITableViewController {
         cell.videoTitle.numberOfLines = 0
         cell.videoTitle.sizeToFit()
         
-        let thumbnailImg = StringToImage().stringToImage(inputString: videoInfo["thumbnailURL"])
+        let thumbnailImg = ToImage().stringToImage(inputString: videoInfo["thumbnailURL"])
         cell.videoThumbnail.image = thumbnailImg
         
         return cell

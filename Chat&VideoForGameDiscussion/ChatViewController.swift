@@ -15,10 +15,11 @@ import Photos
 let EMIT_CHAT_MESSAGE = "chat message"
 let CHANGE_USER_NAME = "change nickname"
 let SEND_IMAGE = "sendImage"
+
+
+var count = 0
 class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewDataSource , UIImagePickerControllerDelegate , UINavigationControllerDelegate, UITextFieldDelegate {
 
-//    @IBOutlet weak var inputMessage: UITextField!
-//    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inputMsgField: UITextField!
     
@@ -26,23 +27,25 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     
     var messages = [[Any]]()
     var setUserName = ""
-    var getAndReceive = ""
     var id = ""
     let resizeImage = ResizeImage()
     
-    let socket = SocketIOClient(socketURL: URL(string: "https://jeffsocketchateroom.herokuapp.com")!)
+    let socket = SocketFunction.standrad.socketClient
+//        SocketIOClient(socketURL: URL(string: "https://jeffsocketchateroom.herokuapp.com")!)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        MAX_FRAME_WIDTH = self.view.frame.size.width - CGFloat(30)
+        MAX_FRAME_WIDTH = self.tableView.frame.size.width - CGFloat(35)
         resizeImage.setMaxWidth(maxWidth: MAX_FRAME_WIDTH)
         
         // Connect To Socket.io's Chat Room
         socket.connect(timeoutAfter: 20) {
             print("Time out of connect")
         }
+        
+        
         // 為了讓socket.id 加入server 中的 socket.id array
         // 連上socket Server 時做的事情
         socket.on(clientEvent: SocketClientEvent.connect) { [weak self](data, ack) in
@@ -126,7 +129,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             // 把抓到的message 顯示到Cell上
             self!.addNewMessage(user: userName, message: message)
         }
-        socket.on("sendImage") { [weak self](data, ack) in
+        socket.on(SEND_IMAGE) { [weak self](data, ack) in
             guard let userName = data[0] as? String else{
                 print("data is nil")
                 return
@@ -136,7 +139,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
                 return
             }
             self!.addNewMessage(user: userName, message: imageString)
-            print("userName:\(userName)")
+            print("ImguserName:\(userName)")
             
         }
     }
@@ -158,8 +161,14 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     //  MARK: Normal Function
     // Add message into message Array and reload tableView
     func addNewMessage(user:String, message:String) {
-        // push all message to messages (include base64String)
-        self.messages.append([user,message])
+        // push all message to messages and check can message to change to image
+        if let msgImage = ToImage().base64ToImage(inputString: message) {
+            self.messages.append([user,msgImage])
+        }else{
+            self.messages.append([user,message])
+        }
+        
+        
         
         // Reload the tableView
         DispatchQueue.main.async {
@@ -216,33 +225,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         present(userNameAlert, animated: true, completion: nil)
     }
     
-    // Convert Base64String to Dota to Image
-    func base64ToImage(inputString: String) -> UIImage? {
-        let base64StringArray = inputString.components(separatedBy: "base64,")
-        if base64StringArray.count != 2 {
-            return nil
-        }
         
-        let base64String = base64StringArray[1]
-        // base64String convert to Data
-        guard let imageData = Data.init(base64Encoded: base64String, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters) else{
-            print("imageData is nil")
-            return nil
-        }
-        guard let image = UIImage(data:imageData) else{
-            print("image is nil")
-            return nil
-        }
-        let resizeImage = self.resizeImage.remakeImageSize(originalImage: image)
-        
-        NSLog("image Size")
-        print(image.size.height)
-        print(image.size.width)
-        
-        getAndReceive = "get"
-        return resizeImage
-    }
-    
     //  MARK: TableView function============
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -259,16 +242,10 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             print("userName is not String")
             return msgCell
         }
-        
-        guard let stringMessage = messages[indexPath.row][1] as? String else {
-            print("stringMessage is not String")
-            return msgCell
-        }
-        // if image != nil return imgCell
-        if let msgImage = base64ToImage(inputString: stringMessage){
+        // check messages[indexPath.row][1] is or not image
+        if let msgImage = messages[indexPath.row][1] as? UIImage {
             let imgCell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageTableViewCell
             imgCell.userName.text = "\(userName): "
-            imgCell.origoBase64 = stringMessage
             imgCell.msgImage.image = msgImage
             // let size fit to frame
             imgCell.userName.numberOfLines = 0
@@ -278,6 +255,10 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             return imgCell
         }
         
+        guard let stringMessage = messages[indexPath.row][1] as? String else {
+            print("stringMessage is not String")
+            return msgCell
+        }
         // if image is nil return msgCell
         msgCell.userName.text = "\(userName): "
         msgCell.message.text = "      \(stringMessage)"
@@ -293,7 +274,23 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 2048
     }
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        
+        guard let msgImage = messages[indexPath.row][1] as? UIImage else {
+            print("stringMessage is not UIImage")
+            return
+        }
+        
+        guard let nextPage = storyboard?.instantiateViewController(withIdentifier: "ImageDrawViewController") as? ImageDrawViewController else {
+            print("nextpage is nil")
+            return
+        }
+        nextPage.image = msgImage
+        
+        
+        self.present(nextPage, animated: true, completion: nil)
+    }
     // MARK: - UIimagePickerController delegate function
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let type = info[UIImagePickerControllerMediaType] as? String else {
@@ -307,6 +304,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
                 print("info's OriginalImage is not IImage")
                 return
             }
+            // check the image has edited
             if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
                 print("editedImage is not nil")
                 inputImage = editedImage
@@ -327,7 +325,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         // add base64 jpeg to header,let the server can analyse
         let finalBase64String = "data:image/jpeg;base64,\(imageStr)"
         // send image to server
-        socket.emit("sendImage", finalBase64String)
+        socket.emit(SEND_IMAGE, finalBase64String)
         // Important close the Edite View
         picker.dismiss(animated: true, completion: nil)
     }
