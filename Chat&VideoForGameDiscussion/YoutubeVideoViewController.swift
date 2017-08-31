@@ -8,19 +8,20 @@
 
 import UIKit
 import GoogleAPIClientForREST
-
+import AVFoundation
+import XCDYouTubeKit
 class YoutubeVideoViewController: UIViewController {
     
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var youtubeEmber: UIWebView!
-    
-    var youtubeService = GTLRYouTubeService()
+    @IBOutlet weak var webView: UIWebView!
+    var youtubeService = YoutubeUserInfo.standard.youtubeService
     
     var videoID = ""
     var videoDiscription = ""
     var videoTitle = ""
     var videoKind = ""
+    let videoPlayerVc = XCDYouTubeVideoPlayerViewController()
     
     private var addinPlaylistVC = PlaylistSelectViewController()
     override func viewDidLoad() {
@@ -29,8 +30,16 @@ class YoutubeVideoViewController: UIViewController {
         // Do any additional setup after loading the view.
         titleLabel.text = videoTitle
         titleLabel.numberOfLines = 0
+        
+        
         getVideoInformation(videoId: videoID)
-        loadYoutube(videoID: videoID)
+        
+        
+        videoPlayerVc.videoIdentifier = videoID
+        videoPlayerVc.present(in: self.webView)
+        videoPlayerVc.moviePlayer.prepareToPlay()
+        videoPlayerVc.moviePlayer.shouldAutoplay = false
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,18 +65,6 @@ class YoutubeVideoViewController: UIViewController {
         
     }
     
-        
-    
-
-    func loadYoutube(videoID:String) {
-        guard let youtubeURL = URL(string: "https://www.youtube.com/embed/\(videoID)") else {
-                return
-        }
-        
-        youtubeEmber.allowsInlineMediaPlayback = true
-        youtubeEmber.loadRequest( URLRequest(url: youtubeURL) )
-    }
-    
     // MARK: - Youtube fetch function
     func getVideoInformation(videoId: String){
         let videoListQuery = GTLRYouTubeQuery_VideosList.query(withPart: "snippet")
@@ -86,6 +83,9 @@ class YoutubeVideoViewController: UIViewController {
             print("items is nil")
             return
         }
+        if items.first == nil {
+            showMissingAlert()
+        }
         for item in items {
             guard let snippet = item.snippet else{
                 return
@@ -99,10 +99,17 @@ class YoutubeVideoViewController: UIViewController {
                 }else{
                     self.descriptionTextView.isHidden = true
                 }
-                
             }
         }
     }
-    
+    func showMissingAlert(){
+        let alert = UIAlertController.init(title: "", message: "This Video is missing. Please check this source", preferredStyle: .alert)
+        let ok = UIAlertAction.init(title: "OK", style: .destructive) { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(ok)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

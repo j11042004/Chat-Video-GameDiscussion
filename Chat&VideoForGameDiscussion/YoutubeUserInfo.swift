@@ -38,10 +38,22 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
             NSLog("Sing in Fail : \(error)")
             return
         }
-        NSLog("Login Success")
         // Youtube 授權要求
         youtubeService.authorizer = user.authentication?.fetcherAuthorizer()
         
     }
 
+    
+    // Request to delete a item in playlist
+    func requestToDeletePlaylistItem(deleteItemID: String){
+        let playlistItemDeleteQuery = GTLRYouTubeQuery_PlaylistItemsDelete.query(withIdentifier: deleteItemID)
+        youtubeService.executeQuery(playlistItemDeleteQuery) { (ticket, response, error) in
+            if let error = error {
+                print("Delete Error :\(error)")
+                return
+            }
+        }
+    }
+
+    
 }

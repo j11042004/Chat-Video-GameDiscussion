@@ -11,5 +11,5 @@ target 'Chat&VideoForGameDiscussion' do
 pod "Socket.IO-Client-Swift"
 pod "GoogleSignIn"
 pod "GoogleAPIClientForREST/YouTube"
-
+pod "XCDYouTubeKit"
 end

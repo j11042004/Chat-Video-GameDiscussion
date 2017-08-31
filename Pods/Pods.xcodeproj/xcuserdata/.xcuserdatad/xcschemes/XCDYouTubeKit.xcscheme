@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B8F14F548E9D49E44BCD43ED73A59BB4'
-               BlueprintName = 'Socket.IO-Client-Swift'
+               BlueprintIdentifier = '016658D1A6C3528D1A5F61B8462C881F'
+               BlueprintName = 'XCDYouTubeKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Socket.IO-Client-Swift.framework'>
+               BuildableName = 'XCDYouTubeKit.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

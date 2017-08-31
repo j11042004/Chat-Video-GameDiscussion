@@ -44,6 +44,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             print("Time out of connect")
         }
         // 為了讓socket.id 加入server 中的 socket.id array
+        // 連上socket Server 時做的事情
         socket.on(clientEvent: SocketClientEvent.connect) { [weak self](data, ack) in
             self!.socket.emit("addNewUser", self!.setUserName)
         }
@@ -109,63 +110,6 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     @IBAction func changeNameBtn(_ sender: Any) {
         changeNameAlert()
     }
-    func launchImagePickerWithSourceType(sourceType: UIImagePickerControllerSourceType){
-        // Determine SourceType is Invalid?
-        let sourceAvailable = UIImagePickerController.isSourceTypeAvailable(sourceType)
-        if sourceAvailable == false {
-            NSLog("Invalid Source Type")
-            return
-        }
-        
-        let picker = UIImagePickerController()
-//        picker.mediaTypes = [kUTTypeImage as String]
-        picker.sourceType = sourceType
-        picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        
-        // 是否做裁切，在ipad 上使用會只出現左上角圖，因此不使用
-//        picker.allowsEditing = true
-        
-        self.present(picker, animated: true, completion: nil)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let type = info[UIImagePickerControllerMediaType] as? String else {
-            print("info's MediaType is not String")
-            return
-        }
-        var inputImage = UIImage()
-        
-        if type == kUTTypeImage as String {
-            guard let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-                print("info's OriginalImage is not IImage")
-                return
-            }
-            if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-                print("editedImage is not nil")
-                inputImage = editedImage
-                inputImage = self.resizeImage.remakeImageSize(originalImage: editedImage)
-            } else{
-                print("editedImage is nil")
-                inputImage = originalImage
-                inputImage = self.resizeImage.remakeImageSize(originalImage: originalImage)
-            }
-        }
-        // change to jpeg
-        let imageData = UIImageJPEGRepresentation(inputImage, 0.8)
-        // base64 encodeing
-        guard let imageStr = imageData?.base64EncodedString(options: .lineLength64Characters) else {
-            print("imageStr is nil")
-            return
-        }
-        // add base64 jpeg to header,let the server can analyse
-        let finalBase64String = "data:image/jpeg;base64,\(imageStr)"
-        // send image to server
-        socket.emit("sendImage", finalBase64String)
-        // Important close the Edite View
-        picker.dismiss(animated: true, completion: nil)
-    }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
     
     //  MARK:  Soket Action
     // New message add in the socket.io chat room
@@ -228,6 +172,26 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         }
     }
     
+    // Prepare to call the album or camera
+    func launchImagePickerWithSourceType(sourceType: UIImagePickerControllerSourceType){
+        // Determine SourceType is Invalid?
+        let sourceAvailable = UIImagePickerController.isSourceTypeAvailable(sourceType)
+        if sourceAvailable == false {
+            NSLog("Invalid Source Type")
+            return
+        }
+        
+        let picker = UIImagePickerController()
+        //        picker.mediaTypes = [kUTTypeImage as String]
+        picker.sourceType = sourceType
+        picker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+        
+        // 是否做裁切，在ipad 上使用會只出現左上角圖，因此不使用
+        //        picker.allowsEditing = true
+        
+        self.present(picker, animated: true, completion: nil)
+    }
+
     // show the input username's alert
     func changeNameAlert() {
         let userNameAlert = UIAlertController.init(title: "Please enter a user name.", message: "", preferredStyle: .alert)
@@ -330,6 +294,47 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         return 2048
     }
 
+    // MARK: - UIimagePickerController delegate function
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let type = info[UIImagePickerControllerMediaType] as? String else {
+            print("info's MediaType is not String")
+            return
+        }
+        var inputImage = UIImage()
+        
+        if type == kUTTypeImage as String {
+            guard let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+                print("info's OriginalImage is not IImage")
+                return
+            }
+            if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+                print("editedImage is not nil")
+                inputImage = editedImage
+                inputImage = self.resizeImage.remakeImageSize(originalImage: editedImage)
+            } else{
+                print("editedImage is nil")
+                inputImage = originalImage
+                inputImage = self.resizeImage.remakeImageSize(originalImage: originalImage)
+            }
+        }
+        // change to jpeg
+        let imageData = UIImageJPEGRepresentation(inputImage, 0.8)
+        // base64 encodeing
+        guard let imageStr = imageData?.base64EncodedString(options: .lineLength64Characters) else {
+            print("imageStr is nil")
+            return
+        }
+        // add base64 jpeg to header,let the server can analyse
+        let finalBase64String = "data:image/jpeg;base64,\(imageStr)"
+        // send image to server
+        socket.emit("sendImage", finalBase64String)
+        // Important close the Edite View
+        picker.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - close the keyBoard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)

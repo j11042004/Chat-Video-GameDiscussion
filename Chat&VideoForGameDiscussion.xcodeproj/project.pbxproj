@@ -28,6 +28,7 @@
 		041B10F31F5042D100C0E999 /* PlaylistVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B10F21F5042D100C0E999 /* PlaylistVideoTableViewCell.swift */; };
 		041B10F81F504BFC00C0E999 /* YouTubeSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B10F71F504BFC00C0E999 /* YouTubeSearchTableViewCell.swift */; };
 		0442E3B21F53FB5100BB14DF /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0442E3B11F53FB5100BB14DF /* Photos.framework */; };
+		0442E3B41F540A1100BB14DF /* SocketFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442E3B31F540A1100BB14DF /* SocketFunction.swift */; };
 		DE2697C31B94873BF7555ABC /* Pods_Chat_VideoForGameDiscussion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		041B10F21F5042D100C0E999 /* PlaylistVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistVideoTableViewCell.swift; sourceTree = "<group>"; };
 		041B10F71F504BFC00C0E999 /* YouTubeSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeSearchTableViewCell.swift; sourceTree = "<group>"; };
 		0442E3B11F53FB5100BB14DF /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		0442E3B31F540A1100BB14DF /* SocketFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketFunction.swift; sourceTree = "<group>"; };
 		85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_VideoForGameDiscussion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9095736FD385D6D412722701 /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.release.xcconfig"; sourceTree = "<group>"; };
 		B47DF8F71E30D42FD911597C /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,10 +120,10 @@
 		041B10E71F503A0C00C0E999 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				04120CA31F4EB298002AD5C3 /* AppDelegate.swift */,
 				04120CBE1F4EDA23002AD5C3 /* ResizeImage.swift */,
 				04120CC21F4EFC65002AD5C3 /* StringToImage.swift */,
 				041B10EE1F503B4800C0E999 /* YoutubeUserInfo.swift */,
+				0442E3B31F540A1100BB14DF /* SocketFunction.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -139,6 +141,7 @@
 		041B10E91F503A2000C0E999 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				04120CA31F4EB298002AD5C3 /* AppDelegate.swift */,
 				04120CB21F4EB298002AD5C3 /* Info.plist */,
 				041B10F01F5040F600C0E999 /* noImage.png */,
 				04120CAA1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld */,
@@ -326,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0442E3B41F540A1100BB14DF /* SocketFunction.swift in Sources */,
 				041B10E51F50196300C0E999 /* PlaylistSelectViewController.swift in Sources */,
 				04120CCD1F4FF1DE002AD5C3 /* YoutubeVideoViewController.swift in Sources */,
 				041B10F81F504BFC00C0E999 /* YouTubeSearchTableViewCell.swift in Sources */,

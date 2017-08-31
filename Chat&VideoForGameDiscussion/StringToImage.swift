@@ -24,4 +24,17 @@ class StringToImage: NSObject {
         }
         return inputImg
     }
+    
+    func urlToImage(inputUrl:URL) -> UIImage {
+        
+        
+        guard let inputData = try? Data(contentsOf: inputUrl)  else {
+            return UIImage(named: "noImage.png")!
+        }
+        guard let inputImg = UIImage(data: inputData)  else {
+            return UIImage(named: "noImage.png")!
+        }
+        return inputImg
+    }
+
 }

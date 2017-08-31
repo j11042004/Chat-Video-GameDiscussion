@@ -25,11 +25,13 @@ PODS:
   - GTMSessionFetcher/Full (1.1.11):
     - GTMSessionFetcher/Core (= 1.1.11)
   - Socket.IO-Client-Swift (10.2.0)
+  - XCDYouTubeKit (2.5.5)
 
 DEPENDENCIES:
   - GoogleAPIClientForREST/YouTube
   - GoogleSignIn
   - Socket.IO-Client-Swift
+  - XCDYouTubeKit
 
 SPEC CHECKSUMS:
   GoogleAPIClientForREST: bf724227a6ad1459aab09b73800aad9184a0f64c
@@ -38,7 +40,8 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   Socket.IO-Client-Swift: ecd7fe4d2746a7557e71c2d6e95e23e3be31ddd1
+  XCDYouTubeKit: 86f4e7a9c2baa7b7adf6abfc28ac3ab34927be2d
 
-PODFILE CHECKSUM: 8fcb2307b0268d3bb96e1f0b765ad117d7e04b59
+PODFILE CHECKSUM: ae4054d40d2ea994e526e931a79973f462f0807f
 
 COCOAPODS: 1.2.0
