@@ -71,7 +71,8 @@ class PlaylistSelectViewController: UIViewController, UIPickerViewDelegate, UIPi
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func saveInPlaylistBynAction(_ sender: Any) {
-        fetchPlaylistInsertItem(playlistId: choosedlistId, insertVideoId: insertVideoId, insertKind: insertKind)
+        // request to insert item in playlist
+        YoutubeUserInfo.standard.fetchPlaylistInsertItem(playlistId: choosedlistId, insertVideoId: insertVideoId, insertKind: insertKind)
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -109,35 +110,6 @@ class PlaylistSelectViewController: UIViewController, UIPickerViewDelegate, UIPi
         self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - PlaylistItems.insert Function
-    func fetchPlaylistInsertItem(playlistId: String, insertVideoId: String ,insertKind: String){
-        // Set playlist info
-        let playlistItem = GTLRYouTube_PlaylistItem()
-        playlistItem.snippet = GTLRYouTube_PlaylistItemSnippet()
-        
-        // Set insert video's info
-        let resourceId = GTLRYouTube_ResourceId()
-        resourceId.kind = insertKind
-        resourceId.videoId = insertVideoId
-        
-        
-        playlistItem.snippet?.playlistId = playlistId
-        playlistItem.snippet?.resourceId = resourceId
-        
-        
-        youtubeService.apiKey = apiKey
-        
-        let insertItemQuery = GTLRYouTubeQuery_PlaylistItemsInsert.query(withObject: playlistItem, part: "snippet")
-        
-        youtubeService.executeQuery(insertItemQuery, delegate: self, didFinish: #selector(analysisPlaylistItemInsert(ticket:playListResponse:error:)))
-    }
-    func analysisPlaylistItemInsert(ticket: GTLRServiceTicket , playListResponse response :GTLRYouTube_PlaylistItemListResponse ,error: Error?){
-        if let error = error {
-            print("searchList Error :\(error)")
-            return
-        }
-        print("insert OK")
-    }
     /*
     // MARK: - Navigation
 

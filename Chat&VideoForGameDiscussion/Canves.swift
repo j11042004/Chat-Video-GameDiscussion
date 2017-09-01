@@ -10,16 +10,10 @@ import UIKit
 
 class Canves: UIView {
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     var drawImage : UIImage?
-    var firstPoint : CGPoint?
-    var endPoint : CGPoint?
+    var color = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
+    var historyImages = [UIImage]()
+    var lineWidth = CGFloat(2.0)
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         //取得螢幕上的手指
@@ -29,18 +23,18 @@ class Canves: UIView {
         let previousPoint = firstToach?.previousLocation(in: self)
         //取的該手指在螢幕上的當前位置，使用 drawLine 方法
         let currentPoint = firstToach?.location(in: self)
-        drawLine(from: previousPoint, to: currentPoint)
+        drawLine(from: previousPoint, to: currentPoint, lineWidth: lineWidth)
         
     }
-
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        historyImages.append(drawImage!)
+    }
     //將兩個位置繪製成線的方法
-    func drawLine(from : CGPoint?, to: CGPoint?){
-        // guard，守衛檢查傳入是否有值，兩者都有就放到自己的變數中，否則就跳出
+    func drawLine(from : CGPoint?, to: CGPoint?, lineWidth: CGFloat){
         guard let from1 = from , let to1 = to
             else {
-                return
+            return
         }
-        //過了這關，就可以確保以下的from1與to1絕對有值，不是nil
         
         //建立作圖空間
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 1.0)
@@ -54,8 +48,9 @@ class Canves: UIView {
         //繪製隱形線
         ctx?.addLine(to: to1)
         //設定線條顏色
-        UIColor.red.setStroke()
+        color.setStroke()
         //設定線條寬度
+        
         ctx?.setLineWidth(2.0)
         //上線稿
         ctx?.strokePath()
@@ -68,6 +63,7 @@ class Canves: UIView {
         // self.layer.contents=(__bridge id _Nullable)(image.CGImage);
         
         layer.contents = drawImage?.cgImage
+        // 隨時更新圖片
         if let cg = drawImage?.cgImage{
             drawImage = UIImage(cgImage: cg)
         }

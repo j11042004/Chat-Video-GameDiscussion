@@ -21,7 +21,7 @@ class YoutubeVideoViewController: UIViewController {
     var videoDiscription = ""
     var videoTitle = ""
     var videoKind = ""
-    let videoPlayerVc = XCDYouTubeVideoPlayerViewController()
+    var videoPlayerVc = XCDYouTubeVideoPlayerViewController()
     
     private var addinPlaylistVC = PlaylistSelectViewController()
     override func viewDidLoad() {
@@ -34,21 +34,28 @@ class YoutubeVideoViewController: UIViewController {
         
         getVideoInformation(videoId: videoID)
         
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         videoPlayerVc.videoIdentifier = videoID
         videoPlayerVc.present(in: self.webView)
         videoPlayerVc.moviePlayer.prepareToPlay()
         videoPlayerVc.moviePlayer.shouldAutoplay = false
-        
-    }
 
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     override func viewWillDisappear(_ animated: Bool) {
         // let addinPlaylist viewController dismiss
+        print("dismiss")
+        // get pause time
+//        print(videoPlayerVc.moviePlayer.currentPlaybackTime)
+        videoPlayerVc.moviePlayer.pause()
+        
         addinPlaylistVC.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
+        
     }
    
     @IBAction func addInPlaylistAction(_ sender: Any) {

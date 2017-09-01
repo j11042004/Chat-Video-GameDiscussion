@@ -29,71 +29,26 @@ class PlaylistVideoTableViewController: UITableViewController {
             return
         }
         
-        getPlaylistItemsInfo(playListID: playListID)
+        YoutubeUserInfo.standard.requestPlaylistItem(from: playListID)
         
-        
+        // To get PlaylistItemsTableViewReload notification
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(notificationObj:)), name: NSNotification.Name(rawValue: "PlaylistItemsTableViewReload"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-//MARK: Youtube request function
-    // Get playlist's videos info
-    func getPlaylistItemsInfo(playListID : String){
-        // Set All items From playList Query
-        let playlistItemsQuery = GTLRYouTubeQuery_PlaylistItemsList.query(withPart: "snippet,contentDetails,status")
-        playlistItemsQuery.playlistId = playListID
-        playlistItemsQuery.maxResults = 50
-        
-        youtubeService.executeQuery(playlistItemsQuery, delegate: self, didFinish: #selector(displayPlaylistsItemResult(ticket:playlistResponse:error:)))
-        
-    }
-    // get playList's all videos more Information
-    func displayPlaylistsItemResult(ticket: GTLRServiceTicket , playlistResponse response :GTLRYouTube_PlaylistItemListResponse ,error: Error?) {
-        if let error = error {
-            print("error:\(error)")
-            return
-        }
-        if let items = response.items {
-            for item in items {
-                var videoInfo = [String : String]()
-                if let idForVideoInPlaylist = item.identifier {
-                    videoInfo["idForVideoInPlaylist"] = idForVideoInPlaylist
-                }
-                let snippet = item.snippet
-                if let videoTitle = snippet?.title {
-                    videoInfo["videoTitle"] = videoTitle
-                }
-                if let thumbnailURL = snippet?.thumbnails?.defaultProperty?.url {
-                    videoInfo["thumbnailURL"] = thumbnailURL
-                }
-                if let videoID = item.contentDetails?.videoId {
-                    videoInfo["videoID"] = videoID
-                }
-                if let videoKind = snippet?.resourceId?.kind {
-                    videoInfo["videoKind"] = videoKind
-                }
-                
-                listVideos.append(videoInfo )
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                
-            }
-            
+    
+    // MARK: - normal Function
+    func reloadTableView(notificationObj:Notification){
+        if let notificationResult = notificationObj.object as? [[String: String]]{
+            listVideos = notificationResult
+            print("listVideos count : \(listVideos.count)")
+            self.tableView.reloadData()
         }
     }
-    // Request to delete a item in playlist
-    func requestToDeletePlaylistItem(deleteItemID: String){
-        let playlistItemDeleteQuery = GTLRYouTubeQuery_PlaylistItemsDelete.query(withIdentifier: deleteItemID)
-        youtubeService.executeQuery(playlistItemDeleteQuery) { (ticket, response, error) in
-            if let error = error {
-                print("Delete Error :\(error)")
-                return
-            }
-        }
-    }
+
     
     
     // MARK: - Table view data source
@@ -167,8 +122,9 @@ class PlaylistVideoTableViewController: UITableViewController {
             guard let deleteVideoIdInPlaylist = listVideos[indexPath.row]["idForVideoInPlaylist"] else {
                 return
             }
-            requestToDeletePlaylistItem(deleteItemID: deleteVideoIdInPlaylist)
-            // must to remove the element to which you request first
+            // to delet the playlist's item
+            YoutubeUserInfo.standard.requestToDeletePlaylistItem(deleteItemID: deleteVideoIdInPlaylist)
+            // must to remove the element to which your request first
             listVideos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -200,9 +156,4 @@ class PlaylistVideoTableViewController: UITableViewController {
     }
     */
     
-    func tableViewReload(){
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
 }

@@ -11,16 +11,23 @@ import UIKit
 private let socketClient = SocketFunction.standrad.socketClient
 class ImageDrawViewController: UIViewController {
     
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var canvas: Canves!
+    
+    @IBOutlet weak var redSlider: UISlider!
+    @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
+    
     var image = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         canvas.drawImage = image
-        canvas.sizeToFit()
-        canvas.drawLine(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: 0)
-        )
+        
+        canvas.historyImages.append(image)
+        // push the image which will be drawed on the Graphic context
+        canvas.drawLine(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: 0), lineWidth: CGFloat(0))
+        
         // Do any additional setup after loading the view.
     }
 
@@ -29,8 +36,25 @@ class ImageDrawViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func prevAction(_ sender: Any) {
+        if canvas.historyImages.count-1 > 0 {
+            canvas.historyImages.remove(at: canvas.historyImages.count-1)
+            canvas.drawImage = canvas.historyImages[canvas.historyImages.count-1]
+        }
+        
+        // let the Graphic context's back ground image is historyImages.last
+        canvas.drawLine(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: 0), lineWidth: CGFloat(0))
+    }
+    
+    @IBAction func sliderColorChange(_ sender: Any) {
+        let red = CGFloat( redSlider.value)
+        let blue =  CGFloat( blueSlider.value)
+        let green =  CGFloat( greenSlider.value)
+        
+        canvas.color = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
+    }
+    
     @IBAction func change(_ sender: Any) {
-        imageView.image = canvas.drawImage
         guard let updateImg = canvas.drawImage else {
             return
         }

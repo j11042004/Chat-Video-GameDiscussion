@@ -64,6 +64,10 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
                 }
                 // if the service has the authorize to download user's playlist info
                 if hasAuth {
+                    
+                    if let user = signIn?.currentUser {
+                        setUserInfo(name: user.profile.name, imageURL: user.profile.imageURL(withDimension: 0))
+                    }
                     getUserPlayLists()
                 }
             }else{
@@ -81,6 +85,7 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
     
     
     //MARK: Youtube request function
+    // get user's playlists info
     func getUserPlayLists(){
         // play list request query
         let playListsQuery = GTLRYouTubeQuery_PlaylistsList.query(withPart: "contentDetails, snippet")
@@ -163,17 +168,18 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
             hiddAction(trueOrFalse: false)
             return
         }
-        NSLog("Login Success")
+        NSLog("Login Success vc")
         // Youtube 授權要求
         youtubeService.authorizer = user.authentication?.fetcherAuthorizer()
-        
         YoutubeUserInfo.standard.defaults.set(true, forKey: "UserHasKeychain")
         YoutubeUserInfo.standard.defaults.synchronize()
         
         
         // Must to get the user's authorizer before to request the user's playlist
         getUserPlayLists()
+        
         setUserInfo(name: user.profile.name, imageURL: user.profile.imageURL(withDimension: 0))
+        
         hiddAction(trueOrFalse: true)
     }
     // Disconnect Function
@@ -198,7 +204,9 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
         self.playlistTableview.reloadData()
         hiddAction(trueOrFalse: false)
     }
-    
+    func reloadTableView(){
+        self.playlistTableview.reloadData()
+    }
 // MARK: - Tableview datasource function
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

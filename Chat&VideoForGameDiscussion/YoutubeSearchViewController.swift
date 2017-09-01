@@ -22,6 +22,9 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     override func viewDidLoad() {
         super.viewDidLoad()        // tableView add a tap event
         tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
+        
+        // To get SearchTableViewReload notification
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(notificationObj:)), name: NSNotification.Name(rawValue: "SearchTableViewReload"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,100 +34,20 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     
     
 // MARK: - Normal Function
-    // MARK: - Youtube fetch function
-    func getSearchPlayList(searchString: String, shouldFetch: Bool, pageToken: String){
-        let searchListsQuery = GTLRYouTubeQuery_SearchList.query(withPart: "snippet")
-        searchListsQuery.q = searchString
-        
-        searchListsQuery.maxResults = 50
-        searchListsQuery.pageToken = pageToken
-        searchListsQuery.type = "video"
-        
-        youtubeService.apiKey = apiKey
-//        youtubeService.shouldFetchNextPages = shouldFetch
-        
-        youtubeService.executeQuery(searchListsQuery, delegate: self, didFinish: #selector(analysisSearchList(ticket:searchListResponse:error:)))
-    }
-    
-    func analysisSearchList(ticket: GTLRServiceTicket , searchListResponse response :GTLRYouTube_SearchListResponse ,error: Error?){
-        if let error = error {
-            print("searchList Error :\(error)")
-            return
-        }
-        guard let items = response.items else{
-            print("items is nil")
-            return
-        }
-        // Get all searchList Information
-        
-        for item in items {
-            var searchResult = [String : String]()
-            if let kind = item.identifier?.kind {
-                searchResult["kind"] = kind
-                switch kind {
-                case SEARCH_KINDS[0]:
-                    if let searchID = item.identifier?.videoId {
-                        searchResult["id"] = searchID
-                    }
-                    break
-                case SEARCH_KINDS[1]:
-                    if let searchID = item.identifier?.channelId {
-                        print("==============Find Channel===============")
-                        searchResult["id"] = searchID
-                    }
-                    break
-                default:
-                    if let searchID = item.identifier?.playlistId {
-                        print("==============playlistId===============")
-                        searchResult["id"] = searchID
-                    }
-                    break
-                }
-            }
-            
-            
-            if let searchTitle = item.snippet?.title {
-                searchResult["title"] = searchTitle
-            }
-            if let searchDescription = item.snippet?.descriptionProperty {
-                searchResult["description"] = searchDescription
-            }
-            if let thumbnail = item.snippet?.thumbnails?.defaultProperty?.url  {
-                searchResult["thumbnail"] = thumbnail
-            }
-            
-            let tAndF = searchResults.contains(where: { (item) -> Bool in
-                if item["id"] == searchResult["id"] {
-                    return true
-                }
-                else {
-                    return false
-                }
-            })
-            
-            if !tAndF {
-                searchResults.append(searchResult)
-            }
-            
-        }
-        // Reload TableView
-        DispatchQueue.main.async {
+    func reloadTableView(notificationObj:Notification){
+        if let notificationResult = notificationObj.object as? [[String: String]]{
+            searchResults = notificationResult
+            print("searchResults count:\(searchResults.count)")
             self.tableView.reloadData()
-            
-        }
-        if let pageToken = response.nextPageToken {
-            getSearchPlayList(searchString: inputWord, shouldFetch: true, pageToken: pageToken)
         }
     }
     
-
 // MARK: - SearchBar Delegate Function
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             searchResults = [[String:String]]()
             self.tableView.reloadData()
         }
-        
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
@@ -136,10 +59,10 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             return
         }
         inputWord = input
-        print(inputWord)
+        // request youtube search result
+        YoutubeUserInfo.standard.requestYoutubeSearchResult(searchWord: inputWord)
         
-        searchResults = [[String:String]]()
-        getSearchPlayList(searchString: inputWord, shouldFetch: false, pageToken: "")
+        
         // close keyBoard
         searchBar.resignFirstResponder()
     }
@@ -167,7 +90,6 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         let image = ToImage().stringToImage(inputString: videoInfo["thumbnail"])
         cell.videoThumbnail.image = image
         
-        print(searchResults.count)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -184,7 +106,6 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
         guard let nextPage = storyboard?.instantiateViewController(withIdentifier: "YoutubeVideoViewController") as? YoutubeVideoViewController else {
             return
         }
-        
         
         nextPage.videoTitle = searchTitle
         nextPage.videoID = searchID
