@@ -28,13 +28,13 @@ class YoutubeUserViewController: UIViewController,GIDSignInDelegate,GIDSignInUID
     //    Set request Authorize
     private let scopes = [kGTLRAuthScopeYouTubeReadonly,kGTLRAuthScopeYouTubeForceSsl,kGTLRAuthScopeYouTubeYoutubepartner,kGTLRAuthScopeYouTube]
     private var signInButton = GIDSignInButton()
-    
     private var userPlayLists = [[String : String]]()
     
     let defaults = YoutubeUserInfo.standard.defaults
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "資訊"
         
         // Prepare Google Signin
         signIn?.delegate = self

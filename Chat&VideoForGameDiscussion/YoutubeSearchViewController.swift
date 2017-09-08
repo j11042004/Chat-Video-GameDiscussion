@@ -20,13 +20,19 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     var searchResults = [[String : String]]()
     var inputWord = ""
     override func viewDidLoad() {
-        super.viewDidLoad()        // tableView add a tap event
+        super.viewDidLoad()
+        
+        self.title = " Youtube 影片搜尋"
+        // tableView add a tap event
         tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
         
         // To get SearchTableViewReload notification
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(notificationObj:)), name: NSNotification.Name(rawValue: "SearchTableViewReload"), object: nil)
     }
+    override func viewWillAppear(_ animated: Bool) {
+//        self.navigationController?.title = "Youtube搜尋"
 
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

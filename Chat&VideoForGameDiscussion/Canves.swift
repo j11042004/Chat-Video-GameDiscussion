@@ -15,6 +15,7 @@ class Canves: UIView {
     var historyImages = [UIImage]()
     var lineWidth = CGFloat(2.0)
     
+
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         //取得螢幕上的手指
         let firstToach = touches.first
@@ -24,10 +25,16 @@ class Canves: UIView {
         //取的該手指在螢幕上的當前位置，使用 drawLine 方法
         let currentPoint = firstToach?.location(in: self)
         drawLine(from: previousPoint, to: currentPoint, lineWidth: lineWidth)
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         historyImages.append(drawImage!)
+        
+        // push notification to let ImageDrawViewController to get history image
+        
+        NotificationCenter.default.post(name: NSNotification.Name("getHistoryImages"), object: historyImages)
     }
     //將兩個位置繪製成線的方法
     func drawLine(from : CGPoint?, to: CGPoint?, lineWidth: CGFloat){

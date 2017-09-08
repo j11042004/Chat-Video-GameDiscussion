@@ -26,12 +26,12 @@ class YoutubeVideoViewController: UIViewController {
     private var addinPlaylistVC = PlaylistSelectViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "影片播放"
         
         // Do any additional setup after loading the view.
         titleLabel.text = videoTitle
         titleLabel.numberOfLines = 0
-        
-        
+
         getVideoInformation(videoId: videoID)
         
     }
@@ -48,7 +48,7 @@ class YoutubeVideoViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         // let addinPlaylist viewController dismiss
-        print("dismiss")
+
         // get pause time
 //        print(videoPlayerVc.moviePlayer.currentPlaybackTime)
         videoPlayerVc.moviePlayer.pause()

@@ -27,6 +27,7 @@ class PlaylistSelectViewController: UIViewController, UIPickerViewDelegate, UIPi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Check the user had Keychain && never signout, disconnect
+        self.view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(dismissView)))
         if let check = YoutubeUserInfo.standard.defaults.object(forKey: "UserHasKeychain") as? Bool {
             if let keyChain = YoutubeUserInfo.standard.signIn?.hasAuthInKeychain(){
                 if check && !keyChain {
@@ -36,14 +37,19 @@ class PlaylistSelectViewController: UIViewController, UIPickerViewDelegate, UIPi
             }
             
         }
-        
-        
         guard let userPlaylist = YoutubeUserInfo.standard.defaults.object(forKey: DEFAULT_PLAYLIST) as? [[String:String]] else{
             chooseView.isHidden = true
             showAlert()
             return
         }
+        if userPlaylist.first == nil {
+            
+            chooseView.isHidden = true
+            showAlert()
+            return
+        }
         playLists = userPlaylist
+        print("...\(playLists)")
         if playLists[0][PLAYLIST_TITLE] == nil {
             chooseView.isHidden = true
             showAlert()
@@ -74,6 +80,9 @@ class PlaylistSelectViewController: UIViewController, UIPickerViewDelegate, UIPi
         // request to insert item in playlist
         YoutubeUserInfo.standard.fetchPlaylistInsertItem(playlistId: choosedlistId, insertVideoId: insertVideoId, insertKind: insertKind)
         
+        self.dismiss(animated: true, completion: nil)
+    }
+    func dismissView() {
         self.dismiss(animated: true, completion: nil)
     }
     

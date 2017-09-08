@@ -18,32 +18,64 @@ class ImageDrawViewController: UIViewController {
     @IBOutlet weak var blueSlider: UISlider!
     
     var image = UIImage()
+    var allImages = [UIImage]()
+    var nowImageIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        canvas.drawImage = image
-        
+        self.title = "圖片編輯"
         canvas.historyImages.append(image)
+        canvas.drawImage = image
         // push the image which will be drawed on the Graphic context
         canvas.drawLine(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: 0), lineWidth: CGFloat(0))
         
         // Do any additional setup after loading the view.
+        
+        // receive notification to get allHistoryImage
+        NotificationCenter.default.addObserver(self, selector: #selector(setHistoryImages(notification:)), name: NSNotification.Name("getHistoryImages"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+// MARK: -Normal Function
+    func setHistoryImages(notification : Notification){
+        if let objectImages = notification.object as? [UIImage] {
+            allImages = objectImages
+            nowImageIndex = objectImages.count - 1
+        }
+    }
+// MARK: - UI Action
     @IBAction func prevAction(_ sender: Any) {
-        if canvas.historyImages.count-1 > 0 {
-            canvas.historyImages.remove(at: canvas.historyImages.count-1)
-            canvas.drawImage = canvas.historyImages[canvas.historyImages.count-1]
+        // Check if nowImageIndex is > 0 or not
+        if nowImageIndex > 0 {
+            nowImageIndex -= 1
+            canvas.drawImage = allImages[nowImageIndex]
+            
+            // let the Graphic context's back ground image is historyImages.last
+            canvas.drawLine(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: 0), lineWidth: CGFloat(0))
+            
+            
+            let last = canvas.historyImages.count - 1
+            canvas.historyImages.remove(at: last)
+
         }
         
-        // let the Graphic context's back ground image is historyImages.last
-        canvas.drawLine(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: 0), lineWidth: CGFloat(0))
+    }
+    @IBAction func nextAction(_ sender: Any) {
+        
+        if nowImageIndex < allImages.count - 1 {
+            nowImageIndex += 1
+            canvas.drawImage = allImages[nowImageIndex]
+            
+            // let the Graphic context's back ground image is historyImages.last
+            canvas.drawLine(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: 0), lineWidth: CGFloat(0))
+            
+            canvas.historyImages.append(allImages[nowImageIndex])
+        }
+        
+
     }
     
     @IBAction func sliderColorChange(_ sender: Any) {
@@ -53,6 +85,7 @@ class ImageDrawViewController: UIViewController {
         
         canvas.color = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
     }
+    
     
     @IBAction func change(_ sender: Any) {
         guard let updateImg = canvas.drawImage else {
@@ -74,7 +107,7 @@ class ImageDrawViewController: UIViewController {
     @IBAction func cancelAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
     /*
     // MARK: - Navigation
 

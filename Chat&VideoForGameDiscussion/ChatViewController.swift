@@ -37,6 +37,16 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let coverView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height)))
+        coverView.backgroundColor = UIColor.lightGray
+        let activityCircle = UIActivityIndicatorView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 100)))
+        activityCircle.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityCircle.startAnimating()
+        activityCircle.color = UIColor.red
+        activityCircle.center = self.view.center
+//        self.view.addSubview(coverView)
+//        self.view.addSubview(activityCircle)
+
         MAX_FRAME_WIDTH = self.tableView.frame.size.width - CGFloat(35)
         resizeImage.setMaxWidth(maxWidth: MAX_FRAME_WIDTH)
         
@@ -156,6 +166,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             }
             self!.id = getID
             print("getUserId:\(getID)")
+            
         }
     }
     //  MARK: Normal Function
@@ -288,7 +299,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         }
         nextPage.image = msgImage
         
-        
+//        self.navigationController?.pushViewController(nextPage, animated: true)
         self.present(nextPage, animated: true, completion: nil)
     }
     // MARK: - UIimagePickerController delegate function
