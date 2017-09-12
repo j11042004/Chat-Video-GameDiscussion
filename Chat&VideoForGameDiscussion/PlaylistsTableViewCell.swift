@@ -1,18 +1,16 @@
 //
-//  SelfPlistTableViewCell.swift
+//  PlaylistsTableViewCell.swift
 //  Chat&VideoForGameDiscussion
 //
-//  Created by Uran on 2017/8/24.
+//  Created by Uran on 2017/9/11.
 //  Copyright © 2017年 Uran. All rights reserved.
 //
 
 import UIKit
 
-class SelfPlistTableViewCell: UITableViewCell {
+class PlaylistsTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImgView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

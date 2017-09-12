@@ -16,8 +16,6 @@
 		04120CBB1F4ED542002AD5C3 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CB91F4ED542002AD5C3 /* ImageTableViewCell.swift */; };
 		04120CBD1F4ED554002AD5C3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CBC1F4ED554002AD5C3 /* ChatViewController.swift */; };
 		04120CBF1F4EDA23002AD5C3 /* ResizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CBE1F4EDA23002AD5C3 /* ResizeImage.swift */; };
-		04120CC11F4EF232002AD5C3 /* YoutubeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CC01F4EF232002AD5C3 /* YoutubeUserViewController.swift */; };
-		04120CC71F4F0710002AD5C3 /* SelfPlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CC61F4F0710002AD5C3 /* SelfPlistTableViewCell.swift */; };
 		04120CCB1F4FCCF7002AD5C3 /* PlaylistVideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CCA1F4FCCF7002AD5C3 /* PlaylistVideoTableViewController.swift */; };
 		04120CCD1F4FF1DE002AD5C3 /* YoutubeVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CCC1F4FF1DE002AD5C3 /* YoutubeVideoViewController.swift */; };
 		041B10E31F500F5200C0E999 /* YoutubeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B10E21F500F5200C0E999 /* YoutubeSearchViewController.swift */; };
@@ -27,7 +25,10 @@
 		041B10F31F5042D100C0E999 /* PlaylistVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B10F21F5042D100C0E999 /* PlaylistVideoTableViewCell.swift */; };
 		041B10F81F504BFC00C0E999 /* YouTubeSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B10F71F504BFC00C0E999 /* YouTubeSearchTableViewCell.swift */; };
 		043848CD1F5FE61200D32B23 /* message-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 043848CC1F5FE61200D32B23 /* message-7.png */; };
-		043848CF1F5FE65200D32B23 /* home-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 043848CE1F5FE65200D32B23 /* home-7.png */; };
+		043F41671F659B5C005279BB /* chat&videoV1.png in Resources */ = {isa = PBXBuildFile; fileRef = 043F41661F659B5C005279BB /* chat&videoV1.png */; };
+		043F41691F6653EA005279BB /* SingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F41681F6653EA005279BB /* SingViewController.swift */; };
+		043F416B1F66661F005279BB /* UserplaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F416A1F66661F005279BB /* UserplaylistsViewController.swift */; };
+		043F416D1F667FCA005279BB /* PlaylistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F416C1F667FCA005279BB /* PlaylistsTableViewCell.swift */; };
 		0442E3B21F53FB5100BB14DF /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0442E3B11F53FB5100BB14DF /* Photos.framework */; };
 		0442E3B41F540A1100BB14DF /* SocketFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442E3B31F540A1100BB14DF /* SocketFunction.swift */; };
 		04CC9D2E1F57E309000D8C49 /* ImageDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9D2D1F57E309000D8C49 /* ImageDrawViewController.swift */; };
@@ -49,8 +50,6 @@
 		04120CB91F4ED542002AD5C3 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		04120CBC1F4ED554002AD5C3 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		04120CBE1F4EDA23002AD5C3 /* ResizeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeImage.swift; sourceTree = "<group>"; };
-		04120CC01F4EF232002AD5C3 /* YoutubeUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeUserViewController.swift; sourceTree = "<group>"; };
-		04120CC61F4F0710002AD5C3 /* SelfPlistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfPlistTableViewCell.swift; sourceTree = "<group>"; };
 		04120CCA1F4FCCF7002AD5C3 /* PlaylistVideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistVideoTableViewController.swift; sourceTree = "<group>"; };
 		04120CCC1F4FF1DE002AD5C3 /* YoutubeVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeVideoViewController.swift; sourceTree = "<group>"; };
 		041B10E21F500F5200C0E999 /* YoutubeSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeSearchViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +59,10 @@
 		041B10F21F5042D100C0E999 /* PlaylistVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistVideoTableViewCell.swift; sourceTree = "<group>"; };
 		041B10F71F504BFC00C0E999 /* YouTubeSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeSearchTableViewCell.swift; sourceTree = "<group>"; };
 		043848CC1F5FE61200D32B23 /* message-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message-7.png"; sourceTree = "<group>"; };
-		043848CE1F5FE65200D32B23 /* home-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-7.png"; sourceTree = "<group>"; };
+		043F41661F659B5C005279BB /* chat&videoV1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat&videoV1.png"; sourceTree = "<group>"; };
+		043F41681F6653EA005279BB /* SingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingViewController.swift; sourceTree = "<group>"; };
+		043F416A1F66661F005279BB /* UserplaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserplaylistsViewController.swift; sourceTree = "<group>"; };
+		043F416C1F667FCA005279BB /* PlaylistsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewCell.swift; sourceTree = "<group>"; };
 		0442E3B11F53FB5100BB14DF /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		0442E3B31F540A1100BB14DF /* SocketFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketFunction.swift; sourceTree = "<group>"; };
 		04CC9D2D1F57E309000D8C49 /* ImageDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDrawViewController.swift; sourceTree = "<group>"; };
@@ -143,8 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				04120CAD1F4EB298002AD5C3 /* Assets.xcassets */,
+				043F41661F659B5C005279BB /* chat&videoV1.png */,
 				043848CC1F5FE61200D32B23 /* message-7.png */,
-				043848CE1F5FE65200D32B23 /* home-7.png */,
 				04120CAF1F4EB298002AD5C3 /* LaunchScreen.storyboard */,
 				04120CA71F4EB298002AD5C3 /* Main.storyboard */,
 			);
@@ -176,8 +178,9 @@
 		041B10EC1F503AEC00C0E999 /* YoutubeUser */ = {
 			isa = PBXGroup;
 			children = (
-				04120CC01F4EF232002AD5C3 /* YoutubeUserViewController.swift */,
-				04120CC61F4F0710002AD5C3 /* SelfPlistTableViewCell.swift */,
+				043F41681F6653EA005279BB /* SingViewController.swift */,
+				043F416A1F66661F005279BB /* UserplaylistsViewController.swift */,
+				043F416C1F667FCA005279BB /* PlaylistsTableViewCell.swift */,
 			);
 			name = YoutubeUser;
 			sourceTree = "<group>";
@@ -293,10 +296,10 @@
 				04120CB11F4EB298002AD5C3 /* LaunchScreen.storyboard in Resources */,
 				04120CAE1F4EB298002AD5C3 /* Assets.xcassets in Resources */,
 				041B10F11F5040F600C0E999 /* noImage.png in Resources */,
-				043848CF1F5FE65200D32B23 /* home-7.png in Resources */,
 				04120CA91F4EB298002AD5C3 /* Main.storyboard in Resources */,
 				04CC9D321F57F070000D8C49 /* sakura.jpg in Resources */,
 				043848CD1F5FE61200D32B23 /* message-7.png in Resources */,
+				043F41671F659B5C005279BB /* chat&videoV1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,8 +361,9 @@
 				0442E3B41F540A1100BB14DF /* SocketFunction.swift in Sources */,
 				041B10E51F50196300C0E999 /* PlaylistSelectViewController.swift in Sources */,
 				04120CCD1F4FF1DE002AD5C3 /* YoutubeVideoViewController.swift in Sources */,
+				043F41691F6653EA005279BB /* SingViewController.swift in Sources */,
 				041B10F81F504BFC00C0E999 /* YouTubeSearchTableViewCell.swift in Sources */,
-				04120CC71F4F0710002AD5C3 /* SelfPlistTableViewCell.swift in Sources */,
+				043F416D1F667FCA005279BB /* PlaylistsTableViewCell.swift in Sources */,
 				04120CAC1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld in Sources */,
 				04CC9D2E1F57E309000D8C49 /* ImageDrawViewController.swift in Sources */,
 				04120CBA1F4ED542002AD5C3 /* MessageTableViewCell.swift in Sources */,
@@ -370,9 +374,9 @@
 				04120CCB1F4FCCF7002AD5C3 /* PlaylistVideoTableViewController.swift in Sources */,
 				04120CBF1F4EDA23002AD5C3 /* ResizeImage.swift in Sources */,
 				041B10EF1F503B4800C0E999 /* YoutubeUserInfo.swift in Sources */,
-				04120CC11F4EF232002AD5C3 /* YoutubeUserViewController.swift in Sources */,
 				04120CBD1F4ED554002AD5C3 /* ChatViewController.swift in Sources */,
 				041B10F31F5042D100C0E999 /* PlaylistVideoTableViewCell.swift in Sources */,
+				043F416B1F66661F005279BB /* UserplaylistsViewController.swift in Sources */,
 				04120CA41F4EB298002AD5C3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

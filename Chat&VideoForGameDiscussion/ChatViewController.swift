@@ -63,7 +63,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         }
         // 抓取id
         getUserID()
-
+        
         // When some thing Add in the chat room
         addMessageHandles()
         

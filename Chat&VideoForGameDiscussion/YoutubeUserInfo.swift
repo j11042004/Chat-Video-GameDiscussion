@@ -30,14 +30,36 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
     private var searchResults = [[String : String]]()
     
     func googleSignIn() {
-        // uidelefgete 涉及到ui 所以要再被呼叫的地方牽上
+        // uidelefgete 涉及到ui 所以要再被呼叫的地方牽上 delegate
         signIn?.delegate = self
         signIn?.clientID = clientID
         // 要做不然無法跳到權限畫面
         signIn?.scopes = scopes
         signIn?.signIn()
     }
+    func googelSignOut(){
+        signIn?.signOut()
+        signIn?.disconnect()
+    }
+// Google sign function
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!){
+        if let error = error {
+            NSLog("Sing in Fail : \(error)")
+            return
+        }
+        print("YoutubeUserInfo sign in")
+        // Youtube 授權要求
+        youtubeService.authorizer = user.authentication?.fetcherAuthorizer()
+    }
     
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        print("YoutubeUserInfo singout")
+        
+        // set the userDefault's UerHasKeyChain = false
+        YoutubeUserInfo.standard.defaults.set(false, forKey: "UserHasKeychain")
+        YoutubeUserInfo.standard.defaults.synchronize()
+
+    }
     func requestPlaylistItem(from playlistId:String){
         self.listVideos = [[String : String]]()
         self.playlistId = playlistId
@@ -48,16 +70,6 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
         self.searchWord = searchWord
         requesrSearch(searchString: searchWord, fetchNext: false)
     }
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!){
-        if let error = error {
-            NSLog("Sing in Fail : \(error)")
-            return
-        }
-        // Youtube 授權要求
-        youtubeService.authorizer = user.authentication?.fetcherAuthorizer()
-        
-    }
-
 // MARK: - Youtube request
     // Playlist's videos info request
     func requestPlaylistItemsInfo(playListID : String, pagetoken : String){

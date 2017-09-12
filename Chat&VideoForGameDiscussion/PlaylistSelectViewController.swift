@@ -28,59 +28,66 @@ class PlaylistSelectViewController: UIViewController, UIPickerViewDelegate, UIPi
         super.viewDidLoad()
         // Check the user had Keychain && never signout, disconnect
         self.view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(dismissView)))
-        if let check = YoutubeUserInfo.standard.defaults.object(forKey: "UserHasKeychain") as? Bool {
-            if let keyChain = YoutubeUserInfo.standard.signIn?.hasAuthInKeychain(){
-                if check && !keyChain {
-                    YoutubeUserInfo.standard.signIn?.uiDelegate = self
-                    YoutubeUserInfo.standard.googleSignIn()
-                }
+        
+        // Check User never disconnect the account
+        let check = YoutubeUserInfo.standard.defaults.bool(forKey: "UserHasKeychain")
+        
+        if let hasKeyChain = YoutubeUserInfo.standard.signIn?.hasAuthInKeychain(){
+            print("hasKeyChain :\(hasKeyChain)")
+            if check == false {
+                showAlert()
+                return
             }
-            
+            if check && !hasKeyChain {
+                print("call YoutubeUserInfo google sign in")
+                YoutubeUserInfo.standard.signIn?.uiDelegate = self
+                YoutubeUserInfo.standard.googleSignIn()
+            }
         }
+
         guard let userPlaylist = YoutubeUserInfo.standard.defaults.object(forKey: DEFAULT_PLAYLIST) as? [[String:String]] else{
             chooseView.isHidden = true
             showAlert()
             return
         }
+        
         if userPlaylist.first == nil {
-            
             chooseView.isHidden = true
             showAlert()
             return
         }
+        //Set playLists from userPlaylist
         playLists = userPlaylist
-        print("...\(playLists)")
         if playLists[0][PLAYLIST_TITLE] == nil {
             chooseView.isHidden = true
             showAlert()
             return
         }
         
-        // check user have or not the play List
+        // check user have or not the play List and set the default playlistId is first playlist' id
         guard let firstPlaylistId = playLists[0][PLAYLIST_ID ] else{
             showAlert()
             return
         }
-        
         choosedlistId = firstPlaylistId
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     override func viewDidDisappear(_ animated: Bool) {
-        self.dismiss(animated: true, completion: nil)
+        dismissView()
     }
 //  MARK: - Button Function
     @IBAction func dismissAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        dismissView()
     }
     @IBAction func saveInPlaylistBynAction(_ sender: Any) {
         // request to insert item in playlist
         YoutubeUserInfo.standard.fetchPlaylistInsertItem(playlistId: choosedlistId, insertVideoId: insertVideoId, insertKind: insertKind)
         
-        self.dismiss(animated: true, completion: nil)
+        dismissView()
     }
     func dismissView() {
         self.dismiss(animated: true, completion: nil)
@@ -94,6 +101,9 @@ class PlaylistSelectViewController: UIViewController, UIPickerViewDelegate, UIPi
         return playLists.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if playLists.count == 0{
+            return ""
+        }
         return playLists[row][PLAYLIST_TITLE]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -102,15 +112,11 @@ class PlaylistSelectViewController: UIViewController, UIPickerViewDelegate, UIPi
             return
         }
         choosedlistId = playlistID
-        if let title = playlist[PLAYLIST_TITLE] {
-            print("choose : \(title)")
-            print("choose list id :\(choosedlistId)")
-        }
         
     }
     // MARK: - normal Function
     func showAlert() {
-        let alert = UIAlertController.init(title: "Warning!!!", message: "Not have any Play List, please Login or create a playList", preferredStyle: .alert)
+        let alert = UIAlertController.init(title: "Warning!!!", message: "可能你未登入，或是沒有播放清單，請確認是否已登入或有創建播放清單", preferredStyle: .alert)
         let ok = UIAlertAction.init(title: "OK", style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
         }

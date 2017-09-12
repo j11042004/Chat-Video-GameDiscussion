@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,16 +22,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mi3-ks-w5h">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat&amp;videoV1.png" translatesAutoresizingMaskIntoConstraints="NO" id="3s7-Sx-cdS">
+                                <rect key="frame" x="0.0" y="146" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3s7-Sx-cdS" secondAttribute="height" multiplier="1:1" id="Zs3-r3-i0q"/>
+                                </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.74755221605300903" green="0.86205500364303589" blue="0.93726921081542969" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Mi3-ks-w5h" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="3U3-zo-B52"/>
-                            <constraint firstItem="Mi3-ks-w5h" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="cU5-Wj-WDM"/>
-                            <constraint firstAttribute="trailing" secondItem="Mi3-ks-w5h" secondAttribute="trailing" id="eYO-RO-gBx"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Mi3-ks-w5h" secondAttribute="bottom" id="k8P-QH-1JB"/>
+                            <constraint firstItem="3s7-Sx-cdS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="5uX-hH-EM2"/>
+                            <constraint firstItem="3s7-Sx-cdS" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="UXm-aD-TU4"/>
+                            <constraint firstItem="3s7-Sx-cdS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dN0-Pj-IyY"/>
+                            <constraint firstAttribute="trailing" secondItem="3s7-Sx-cdS" secondAttribute="trailing" id="z78-xK-lGi"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,4 +43,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chat&amp;videoV1.png" width="1024" height="1024"/>
+    </resources>
 </document>

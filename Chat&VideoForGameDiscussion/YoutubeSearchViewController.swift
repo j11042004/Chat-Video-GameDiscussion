@@ -55,11 +55,7 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
             self.tableView.reloadData()
         }
     }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = nil
-        searchResults = [[String:String]]()
-        self.tableView.reloadData()
-    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let input = searchBar.text else {
             return

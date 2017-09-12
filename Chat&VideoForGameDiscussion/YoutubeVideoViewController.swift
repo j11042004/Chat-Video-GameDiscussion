@@ -36,11 +36,15 @@ class YoutubeVideoViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        
         videoPlayerVc.videoIdentifier = videoID
         videoPlayerVc.present(in: self.webView)
         videoPlayerVc.moviePlayer.prepareToPlay()
         videoPlayerVc.moviePlayer.shouldAutoplay = false
-
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
