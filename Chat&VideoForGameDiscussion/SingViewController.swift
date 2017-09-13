@@ -64,7 +64,7 @@ class SingViewController: UIViewController,GIDSignInUIDelegate,GIDSignInDelegate
     }
     
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser?, withError error: Error!) {
         
         // Youtube 授權要求
         youtubeService.authorizer = signIn.currentUser?.authentication?.fetcherAuthorizer()

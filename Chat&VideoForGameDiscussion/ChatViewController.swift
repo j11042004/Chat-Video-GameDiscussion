@@ -33,7 +33,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     let resizeImage = ResizeImage()
     
     let socket = SocketFunction.standrad.socketClient
-//        SocketIOClient(socketURL: URL(string: "https://jeffsocketchateroom.herokuapp.com")!)
+    
     
     
     override func viewDidLoad() {
@@ -45,6 +45,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         // Connect To Socket.io's Chat Room
         socket.connect(timeoutAfter: 20) {
             print("Time out of connect")
+            self.connectFailAlert()
         }
         
         
@@ -52,10 +53,11 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         // 連上socket Server 時做的事情
         socket.on(clientEvent: SocketClientEvent.connect) { [weak self](data, ack) in
             self!.socket.emit("addNewUser", self!.setUserName)
+            
         }
+        
         // 抓取id
         getUserID()
-        
         // When some thing Add in the chat room
         addMessageHandles()
         
@@ -120,6 +122,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
                 print("\(data[1]) is not String")
                 return
             }
+            
             // 把抓到的message 顯示到Cell上
             self!.addNewMessage(user: userName, message: message)
         }
@@ -152,8 +155,34 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             print("getUserId:\(getID)")
             
         }
+/*
+        socket.on("getAllCount") { (data, ack) in
+            print("all Count :\(data)")
+        }
+        socket.on("getAllUserId") { (data, ack) in
+            print("getAllUserId :\(data)")
+        }
+*/
     }
 //  MARK: - Normal Function
+    // Connect Fail
+    func connectFailAlert(){
+        let alert = UIAlertController(title: "", message: "連線失敗或預期，請檢查網路或再次連線", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+        let reConnect = UIAlertAction.init(title: "重新連線", style: .destructive) { (action) in
+            self.socket.reconnect()
+            
+            self.socket.on(clientEvent: SocketClientEvent.connect) { [weak self](data, ack) in
+                self!.socket.emit("addNewUser", self!.setUserName)
+                
+            }
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(reConnect)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
     // Add message into message Array and reload tableView
     func addNewMessage(user:String, message:String) {
         // push all message to messages and check can message to change to image
