@@ -47,9 +47,11 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
             NSLog("Sing in Fail : \(error)")
             return
         }
-        print("YoutubeUserInfo sign in")
+        
         // Youtube 授權要求
-        youtubeService.authorizer = user.authentication?.fetcherAuthorizer()
+        youtubeService.authorizer = signIn.currentUser?.authentication?.fetcherAuthorizer()
+        youtubeService.apiKey = apiKey
+
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {

@@ -67,15 +67,17 @@ class SingViewController: UIViewController,GIDSignInUIDelegate,GIDSignInDelegate
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
         // Youtube 授權要求
-        youtubeService.authorizer = user.authentication?.fetcherAuthorizer()
+        youtubeService.authorizer = signIn.currentUser?.authentication?.fetcherAuthorizer()
         youtubeService.apiKey = apiKey
         
         
         //Set the userDefault's UerHasKeyChain = true
         defaults.set(true, forKey: "UserHasKeychain")
         defaults.synchronize()
-
-        showNextPage()
+        if signIn.currentUser != nil {
+            showNextPage()
+        }
+        
     }
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
