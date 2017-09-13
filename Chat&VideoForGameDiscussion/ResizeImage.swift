@@ -9,17 +9,17 @@
 import UIKit
 
 class ResizeImage: NSObject {
-    static let standard = ResizeImage()
-    private var maxWidth = CGFloat(340)
+    private var maxWidth = CGFloat()
     
     func setMaxWidth(maxWidth:CGFloat){
         self.maxWidth = maxWidth
+        
+        print("maxWidth:\(self.maxWidth)")
     }
     
     
     
     func remakeImageSize(originalImage: UIImage) -> UIImage{
-        print("Max:\(ResizeImage.standard.maxWidth)")
         // if originalImage's
         if originalImage.size.width <= maxWidth && originalImage.size.height <= maxWidth{
             return originalImage

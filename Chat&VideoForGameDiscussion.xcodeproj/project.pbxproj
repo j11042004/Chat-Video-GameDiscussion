@@ -18,6 +18,7 @@
 		04120CBF1F4EDA23002AD5C3 /* ResizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CBE1F4EDA23002AD5C3 /* ResizeImage.swift */; };
 		04120CCB1F4FCCF7002AD5C3 /* PlaylistVideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CCA1F4FCCF7002AD5C3 /* PlaylistVideoTableViewController.swift */; };
 		04120CCD1F4FF1DE002AD5C3 /* YoutubeVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04120CCC1F4FF1DE002AD5C3 /* YoutubeVideoViewController.swift */; };
+		041A69941F67EB9500B95EA4 /* paperClip.png in Resources */ = {isa = PBXBuildFile; fileRef = 041A69931F67EB9500B95EA4 /* paperClip.png */; };
 		041B10E31F500F5200C0E999 /* YoutubeSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B10E21F500F5200C0E999 /* YoutubeSearchViewController.swift */; };
 		041B10E51F50196300C0E999 /* PlaylistSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B10E41F50196300C0E999 /* PlaylistSelectViewController.swift */; };
 		041B10EF1F503B4800C0E999 /* YoutubeUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B10EE1F503B4800C0E999 /* YoutubeUserInfo.swift */; };
@@ -33,7 +34,6 @@
 		0442E3B41F540A1100BB14DF /* SocketFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442E3B31F540A1100BB14DF /* SocketFunction.swift */; };
 		04CC9D2E1F57E309000D8C49 /* ImageDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9D2D1F57E309000D8C49 /* ImageDrawViewController.swift */; };
 		04CC9D301F57E56F000D8C49 /* Canves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9D2F1F57E56F000D8C49 /* Canves.swift */; };
-		04CC9D321F57F070000D8C49 /* sakura.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04CC9D311F57F070000D8C49 /* sakura.jpg */; };
 		04CC9D341F57F7E3000D8C49 /* ToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9D331F57F7E3000D8C49 /* ToImage.swift */; };
 		DE2697C31B94873BF7555ABC /* Pods_Chat_VideoForGameDiscussion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */; };
 /* End PBXBuildFile section */
@@ -52,6 +52,7 @@
 		04120CBE1F4EDA23002AD5C3 /* ResizeImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizeImage.swift; sourceTree = "<group>"; };
 		04120CCA1F4FCCF7002AD5C3 /* PlaylistVideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistVideoTableViewController.swift; sourceTree = "<group>"; };
 		04120CCC1F4FF1DE002AD5C3 /* YoutubeVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeVideoViewController.swift; sourceTree = "<group>"; };
+		041A69931F67EB9500B95EA4 /* paperClip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paperClip.png; sourceTree = "<group>"; };
 		041B10E21F500F5200C0E999 /* YoutubeSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeSearchViewController.swift; sourceTree = "<group>"; };
 		041B10E41F50196300C0E999 /* PlaylistSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistSelectViewController.swift; sourceTree = "<group>"; };
 		041B10EE1F503B4800C0E999 /* YoutubeUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeUserInfo.swift; sourceTree = "<group>"; };
@@ -67,7 +68,6 @@
 		0442E3B31F540A1100BB14DF /* SocketFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketFunction.swift; sourceTree = "<group>"; };
 		04CC9D2D1F57E309000D8C49 /* ImageDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDrawViewController.swift; sourceTree = "<group>"; };
 		04CC9D2F1F57E56F000D8C49 /* Canves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canves.swift; sourceTree = "<group>"; };
-		04CC9D311F57F070000D8C49 /* sakura.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sakura.jpg; sourceTree = "<group>"; };
 		04CC9D331F57F7E3000D8C49 /* ToImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToImage.swift; sourceTree = "<group>"; };
 		85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_VideoForGameDiscussion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9095736FD385D6D412722701 /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,8 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				04120CAD1F4EB298002AD5C3 /* Assets.xcassets */,
-				043F41661F659B5C005279BB /* chat&videoV1.png */,
-				043848CC1F5FE61200D32B23 /* message-7.png */,
 				04120CAF1F4EB298002AD5C3 /* LaunchScreen.storyboard */,
 				04120CA71F4EB298002AD5C3 /* Main.storyboard */,
 			);
@@ -158,7 +156,9 @@
 			children = (
 				04120CA31F4EB298002AD5C3 /* AppDelegate.swift */,
 				04120CB21F4EB298002AD5C3 /* Info.plist */,
-				04CC9D311F57F070000D8C49 /* sakura.jpg */,
+				043F41661F659B5C005279BB /* chat&videoV1.png */,
+				043848CC1F5FE61200D32B23 /* message-7.png */,
+				041A69931F67EB9500B95EA4 /* paperClip.png */,
 				041B10F01F5040F600C0E999 /* noImage.png */,
 				04120CAA1F4EB298002AD5C3 /* Chat_VideoForGameDiscussion.xcdatamodeld */,
 			);
@@ -293,11 +293,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041A69941F67EB9500B95EA4 /* paperClip.png in Resources */,
 				04120CB11F4EB298002AD5C3 /* LaunchScreen.storyboard in Resources */,
 				04120CAE1F4EB298002AD5C3 /* Assets.xcassets in Resources */,
 				041B10F11F5040F600C0E999 /* noImage.png in Resources */,
 				04120CA91F4EB298002AD5C3 /* Main.storyboard in Resources */,
-				04CC9D321F57F070000D8C49 /* sakura.jpg in Resources */,
 				043848CD1F5FE61200D32B23 /* message-7.png in Resources */,
 				043F41671F659B5C005279BB /* chat&videoV1.png in Resources */,
 			);

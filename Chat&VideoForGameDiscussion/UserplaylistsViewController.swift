@@ -27,6 +27,7 @@ class UserplaylistsViewController: UIViewController,UITableViewDelegate,UITableV
         
         signOutBtn = UIBarButtonItem(title: "Google 登出", style: UIBarButtonItemStyle.plain, target: self, action: #selector(googleSignOut))
         self.navigationItem.rightBarButtonItem = signOutBtn
+        self.navigationItem.rightBarButtonItem?.accessibilityElementsHidden = true
     }
     override func viewWillAppear(_ animated: Bool) {
         getUserPlayLists()

@@ -20,6 +20,8 @@ let SEND_IMAGE = "sendImage"
 var count = 0
 class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewDataSource , UIImagePickerControllerDelegate , UINavigationControllerDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var allActionImageView: UIImageView!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inputMsgField: UITextField!
     
@@ -36,18 +38,8 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let coverView = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height)))
-        coverView.backgroundColor = UIColor.lightGray
-        let activityCircle = UIActivityIndicatorView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 100, height: 100)))
-        activityCircle.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        activityCircle.startAnimating()
-        activityCircle.color = UIColor.red
-        activityCircle.center = self.view.center
-//        self.view.addSubview(coverView)
-//        self.view.addSubview(activityCircle)
-
-        MAX_FRAME_WIDTH = self.tableView.frame.size.width - CGFloat(35)
+        MAX_FRAME_WIDTH = self.view.frame.width - CGFloat(35)
+        print(self.view.frame.width)
         resizeImage.setMaxWidth(maxWidth: MAX_FRAME_WIDTH)
         
         // Connect To Socket.io's Chat Room
@@ -69,9 +61,15 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         
         // tableView add a tap event
         tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
-
+        
+        // add imageView Interaction event
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(allActionImageTap))
+        allActionImageView.isUserInteractionEnabled = true
+        allActionImageView.addGestureRecognizer(tapGesture)
+        
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -85,7 +83,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         socket.disconnect()
     }
     
-    //  MARK:  Button Action
+//  MARK: - Button Action
     // Send Message
     @IBAction func sendMsgBtn(_ sender: Any) {
         if inputMsgField.text == "" {
@@ -98,33 +96,19 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         // Send the message to the Socjet.io ChatRoom
         socket.emit(EMIT_CHAT_MESSAGE, message)
         inputMsgField.text = ""
+        
+        
     }
     // Send Image
     @IBAction func sendImgBtn(_ sender: UIButton) {
-        
-        let alert = UIAlertController.init(title: "", message: "Choose one", preferredStyle: .actionSheet)
-        let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
-        let album = UIAlertAction.init(title: "Album", style: .default) { (action) in
-            self.launchImagePickerWithSourceType(sourceType: .photoLibrary)
-        }
-        let camera = UIAlertAction.init(title: "Camera", style: .default) { (action) in
-            self.launchImagePickerWithSourceType(sourceType: .camera)
-        }
-        
-        alert.addAction(album)
-        alert.addAction(camera)
-        alert.addAction(cancel)
-        // 在ipad上要運行popover才可動作
-        alert.popoverPresentationController?.sourceView = self.view
-        alert.popoverPresentationController?.sourceRect = CGRect.init(x: sender.center.x-20, y: sender.center.y-30, width: self.view.frame.size.width, height: 50)
-        
-        self.present(alert, animated: true, completion: nil)
+        sendImageAlert()
     }
+    
     @IBAction func changeNameBtn(_ sender: Any) {
         changeNameAlert()
     }
     
-    //  MARK:  Soket Action
+//  MARK: - Soket Action
     // New message add in the socket.io chat room
     func addMessageHandles() {
         socket.on(EMIT_CHAT_MESSAGE) { [weak self](data, ack) in
@@ -169,7 +153,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             
         }
     }
-    //  MARK: Normal Function
+//  MARK: - Normal Function
     // Add message into message Array and reload tableView
     func addNewMessage(user:String, message:String) {
         // push all message to messages and check can message to change to image
@@ -178,8 +162,6 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         }else{
             self.messages.append([user,message])
         }
-        
-        
         
         // Reload the tableView
         DispatchQueue.main.async {
@@ -190,6 +172,55 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             let indexPath = IndexPath.init(row: self.messages.count-1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
+    }
+    // allActionImageview tap event function
+    func allActionImageTap(){
+        print("allActionImageTap")
+        let alert = UIAlertController(title: "", message: " 請選取要進行的動作", preferredStyle: .actionSheet)
+        
+        let changeUserName = UIAlertAction(title: "更換匿稱", style: .default) { (action) in
+            self.changeNameAlert()
+        }
+        
+        let album = UIAlertAction.init(title: "用相簿傳送圖片", style: .default) { (action) in
+            self.launchImagePickerWithSourceType(sourceType: .photoLibrary)
+        }
+        let camera = UIAlertAction.init(title: "用相機傳送圖片", style: .default) { (action) in
+            self.launchImagePickerWithSourceType(sourceType: .camera)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(changeUserName)
+        alert.addAction(album)
+        alert.addAction(camera)
+        alert.addAction(cancel)
+        
+        // 在ipad上要運行popover才可作 .actionSheet 的運作
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect.init(x:self.allActionImageView.frame.minX , y:self.allActionImageView.frame.minY , width: self.view.frame.width / 4, height: 50)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    // Call photo alert
+    func sendImageAlert(){
+        
+        let alert = UIAlertController.init(title: "", message: "請選擇圖片或相機", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        let album = UIAlertAction.init(title: "Album", style: .default) { (action) in
+            self.launchImagePickerWithSourceType(sourceType: .photoLibrary)
+        }
+        let camera = UIAlertAction.init(title: "Camera", style: .default) { (action) in
+            self.launchImagePickerWithSourceType(sourceType: .camera)
+        }
+        
+        alert.addAction(album)
+        alert.addAction(camera)
+        alert.addAction(cancel)
+        // 在ipad上要運行popover才可作 .actionSheet
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect.init(x:self.allActionImageView.frame.minX , y:self.allActionImageView.frame.minY , width: self.view.frame.width / 4, height: 50)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     // Prepare to call the album or camera
@@ -235,9 +266,8 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         
         present(userNameAlert, animated: true, completion: nil)
     }
-    
         
-    //  MARK: TableView function============
+// MARK: - TableView function
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -302,7 +332,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
 //        self.navigationController?.pushViewController(nextPage, animated: true)
         self.present(nextPage, animated: true, completion: nil)
     }
-    // MARK: - UIimagePickerController delegate function
+// MARK: - UIimagePickerController delegate function
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let type = info[UIImagePickerControllerMediaType] as? String else {
             print("info's MediaType is not String")
