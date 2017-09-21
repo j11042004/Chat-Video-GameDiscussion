@@ -112,6 +112,7 @@ class UserplaylistsViewController: UIViewController,UITableViewDelegate,UITableV
         cell.titleLabel.sizeToFit()
         cell.titleLabel.numberOfLines = 0
         let thumbnailImg = ToImage().stringToImage(inputString: plistInfo["thumbnailURL"])
+        
         cell.thumbnailImgView.image = thumbnailImg
         cell.thumbnailImgView.sizeToFit()
         return cell

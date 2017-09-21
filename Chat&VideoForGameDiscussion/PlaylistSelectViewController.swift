@@ -18,6 +18,7 @@ class PlaylistSelectViewController: UIViewController, UIPickerViewDelegate, UIPi
     private let DEFAULT_PLAYLIST = "userPlaylist"
     
     @IBOutlet weak var chooseView: UIView!
+    
     var playLists = [[String:String]]()
     let youtubeService = YoutubeUserInfo.standard.youtubeService
     private var choosedlistId = ""

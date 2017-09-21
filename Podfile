@@ -8,8 +8,8 @@ target 'Chat&VideoForGameDiscussion' do
   use_frameworks!
 
   # Pods for Chat&VideoForGameDiscussion
-pod "Socket.IO-Client-Swift"
-pod "GoogleSignIn"
-pod "GoogleAPIClientForREST/YouTube"
-pod "XCDYouTubeKit"
+  pod "Socket.IO-Client-Swift"
+  pod "GoogleSignIn"
+  pod "GoogleAPIClientForREST/YouTube"
+  pod "XCDYouTubeKit"
 end

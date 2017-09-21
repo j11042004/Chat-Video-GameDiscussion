@@ -35,7 +35,7 @@
 		04CC9D2E1F57E309000D8C49 /* ImageDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9D2D1F57E309000D8C49 /* ImageDrawViewController.swift */; };
 		04CC9D301F57E56F000D8C49 /* Canves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9D2F1F57E56F000D8C49 /* Canves.swift */; };
 		04CC9D341F57F7E3000D8C49 /* ToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC9D331F57F7E3000D8C49 /* ToImage.swift */; };
-		DE2697C31B94873BF7555ABC /* Pods_Chat_VideoForGameDiscussion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */; };
+		4027C6AAF9F73FC901D153FB /* Pods_Chat_VideoForGameDiscussion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFBF2494E64498856B141E9D /* Pods_Chat_VideoForGameDiscussion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,9 +69,9 @@
 		04CC9D2D1F57E309000D8C49 /* ImageDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDrawViewController.swift; sourceTree = "<group>"; };
 		04CC9D2F1F57E56F000D8C49 /* Canves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canves.swift; sourceTree = "<group>"; };
 		04CC9D331F57F7E3000D8C49 /* ToImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToImage.swift; sourceTree = "<group>"; };
-		85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_VideoForGameDiscussion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9095736FD385D6D412722701 /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.release.xcconfig"; sourceTree = "<group>"; };
-		B47DF8F71E30D42FD911597C /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; sourceTree = "<group>"; };
+		1F318DB9A4F7EADE9253B90C /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.release.xcconfig"; sourceTree = "<group>"; };
+		46D5E4E4FE7329314D8E84D0 /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion.debug.xcconfig"; sourceTree = "<group>"; };
+		AFBF2494E64498856B141E9D /* Pods_Chat_VideoForGameDiscussion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_VideoForGameDiscussion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0442E3B21F53FB5100BB14DF /* Photos.framework in Frameworks */,
-				DE2697C31B94873BF7555ABC /* Pods_Chat_VideoForGameDiscussion.framework in Frameworks */,
+				4027C6AAF9F73FC901D153FB /* Pods_Chat_VideoForGameDiscussion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,8 +92,8 @@
 			children = (
 				04120CA21F4EB298002AD5C3 /* Chat&VideoForGameDiscussion */,
 				04120CA11F4EB298002AD5C3 /* Products */,
-				99C33A1176362DCF936AA0BE /* Pods */,
 				743AAD42E7123556E61938FA /* Frameworks */,
+				C1E95065510BA67906AB752E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,16 +216,16 @@
 			isa = PBXGroup;
 			children = (
 				0442E3B11F53FB5100BB14DF /* Photos.framework */,
-				85635409461B0AAB32FE8815 /* Pods_Chat_VideoForGameDiscussion.framework */,
+				AFBF2494E64498856B141E9D /* Pods_Chat_VideoForGameDiscussion.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		99C33A1176362DCF936AA0BE /* Pods */ = {
+		C1E95065510BA67906AB752E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B47DF8F71E30D42FD911597C /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */,
-				9095736FD385D6D412722701 /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */,
+				46D5E4E4FE7329314D8E84D0 /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */,
+				1F318DB9A4F7EADE9253B90C /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -237,12 +237,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04120CB51F4EB298002AD5C3 /* Build configuration list for PBXNativeTarget "Chat&VideoForGameDiscussion" */;
 			buildPhases = (
-				BBA163951CB5A0F61AC56C42 /* [CP] Check Pods Manifest.lock */,
+				AF46D6A169C45A227D6CA794 /* [CP] Check Pods Manifest.lock */,
 				04120C9C1F4EB298002AD5C3 /* Sources */,
 				04120C9D1F4EB298002AD5C3 /* Frameworks */,
 				04120C9E1F4EB298002AD5C3 /* Resources */,
-				1F0D93A59757CF766903B282 /* [CP] Embed Pods Frameworks */,
-				9893257FA2D1F836959FFA23 /* [CP] Copy Pods Resources */,
+				AFE5BF4AD6D297B266B7F081 /* [CP] Embed Pods Frameworks */,
+				340519373E354DCA7135BEE5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,22 +306,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1F0D93A59757CF766903B282 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9893257FA2D1F836959FFA23 /* [CP] Copy Pods Resources */ = {
+		340519373E354DCA7135BEE5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -336,7 +321,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BBA163951CB5A0F61AC56C42 /* [CP] Check Pods Manifest.lock */ = {
+		AF46D6A169C45A227D6CA794 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -349,6 +334,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AFE5BF4AD6D297B266B7F081 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chat&VideoForGameDiscussion/Pods-Chat&VideoForGameDiscussion-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -500,7 +500,7 @@
 		};
 		04120CB61F4EB298002AD5C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B47DF8F71E30D42FD911597C /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */;
+			baseConfigurationReference = 46D5E4E4FE7329314D8E84D0 /* Pods-Chat&VideoForGameDiscussion.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SCFU5W6M6J;
@@ -514,7 +514,7 @@
 		};
 		04120CB71F4EB298002AD5C3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9095736FD385D6D412722701 /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */;
+			baseConfigurationReference = 1F318DB9A4F7EADE9253B90C /* Pods-Chat&VideoForGameDiscussion.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SCFU5W6M6J;

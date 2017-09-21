@@ -8,7 +8,7 @@
 
 import UIKit
 import GoogleAPIClientForREST
-import AVFoundation
+
 import XCDYouTubeKit
 class YoutubeVideoViewController: UIViewController {
     
@@ -55,10 +55,9 @@ class YoutubeVideoViewController: UIViewController {
 
         // get pause time
 //        print(videoPlayerVc.moviePlayer.currentPlaybackTime)
-        videoPlayerVc.moviePlayer.pause()
         
         addinPlaylistVC.dismiss(animated: true, completion: nil)
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
         
     }
    

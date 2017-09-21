@@ -4,7 +4,8 @@
 //
 //  Created by Uran on 2017/8/24.
 //  Copyright © 2017年 Uran. All rights reserved.
-//
+//   private func handleBase64(message: String) 這方法有做解包
+
 
 import UIKit
 import Foundation
@@ -71,6 +72,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         
     }
     override func viewWillAppear(_ animated: Bool) {
+//        tableView.estimatedRowHeight = 0
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -337,7 +339,6 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         msgCell.userName.sizeToFit()
         msgCell.message.numberOfLines = 0
         msgCell.message.sizeToFit()
-        
         return msgCell
     }
     // 自動適應寬高
@@ -358,7 +359,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         }
         nextPage.image = msgImage
         
-//        self.navigationController?.pushViewController(nextPage, animated: true)
+        
         self.present(nextPage, animated: true, completion: nil)
     }
 // MARK: - UIimagePickerController delegate function
