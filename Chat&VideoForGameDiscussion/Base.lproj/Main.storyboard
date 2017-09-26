@@ -30,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xs6-Hl-jbC">
-                                <rect key="frame" x="0.0" y="64.666666666666686" width="375" height="624.33333333333326"/>
+                                <rect key="frame" x="0.0" y="64.666666666666686" width="375" height="622"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="71" id="oZv-eS-het" customClass="MessageTableViewCell" customModule="Chat_VideoForGameDiscussion" customModuleProvider="target">
@@ -106,23 +106,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="308-CN-kgG"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bno-jx-toV">
-                                <rect key="frame" x="290" y="699" width="75" height="25"/>
-                                <color key="backgroundColor" red="0.37831143740000001" green="0.99184451549999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Send"/>
-                                <connections>
-                                    <action selector="sendMsgBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aBt-Hw-npY"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="myw-Kp-9FI">
-                                <rect key="frame" x="40" y="699" width="244.66666666666669" height="25"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="HAg-vd-go5"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="即時聊天" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9S3-RJ-tTG">
                                 <rect key="frame" x="0.0" y="44" width="375" height="20.666666666666671"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -130,39 +113,71 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paperClip.png" translatesAutoresizingMaskIntoConstraints="NO" id="WDI-4f-h8P">
-                                <rect key="frame" x="5" y="699" width="25" height="25"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqQ-6S-b2U">
+                                <rect key="frame" x="0.0" y="691.66666666666652" width="375" height="32.333333333333371"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paperClip.png" translatesAutoresizingMaskIntoConstraints="NO" id="WDI-4f-h8P">
+                                        <rect key="frame" x="0.0" y="0.0" width="32.333333333333336" height="32.333333333333371"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="WDI-4f-h8P" secondAttribute="height" multiplier="1:1" id="ICD-73-aDt"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="myw-Kp-9FI">
+                                        <rect key="frame" x="37.333333333333329" y="0.0" width="244.66666666666669" height="32.333333333333371"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="HAg-vd-go5"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bno-jx-toV">
+                                        <rect key="frame" x="287" y="0.0" width="83" height="32.333333333333371"/>
+                                        <color key="backgroundColor" red="0.37831143740000001" green="0.99184451549999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendMsgBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aBt-Hw-npY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92158782482147217" green="0.92156791687011719" blue="0.92157191038131714" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="WDI-4f-h8P" secondAttribute="height" multiplier="1:1" id="29p-Q9-ReO"/>
+                                    <constraint firstAttribute="bottom" secondItem="bno-jx-toV" secondAttribute="bottom" id="7Q2-TR-Vog"/>
+                                    <constraint firstAttribute="bottom" secondItem="myw-Kp-9FI" secondAttribute="bottom" id="A8a-xA-fg3"/>
+                                    <constraint firstItem="myw-Kp-9FI" firstAttribute="leading" secondItem="WDI-4f-h8P" secondAttribute="trailing" constant="5" id="EVg-ng-F6b"/>
+                                    <constraint firstAttribute="trailing" secondItem="bno-jx-toV" secondAttribute="trailing" constant="5" id="KIT-q9-mmJ"/>
+                                    <constraint firstItem="bno-jx-toV" firstAttribute="top" secondItem="wqQ-6S-b2U" secondAttribute="top" id="P4d-ds-QY8"/>
+                                    <constraint firstItem="myw-Kp-9FI" firstAttribute="width" secondItem="wqQ-6S-b2U" secondAttribute="width" multiplier="3/4.6" id="UGN-ZP-2NO"/>
+                                    <constraint firstItem="WDI-4f-h8P" firstAttribute="top" secondItem="wqQ-6S-b2U" secondAttribute="top" id="eOq-c6-ffN"/>
+                                    <constraint firstItem="bno-jx-toV" firstAttribute="leading" secondItem="myw-Kp-9FI" secondAttribute="trailing" constant="5" id="h2N-8K-qr6"/>
+                                    <constraint firstItem="myw-Kp-9FI" firstAttribute="top" secondItem="wqQ-6S-b2U" secondAttribute="top" id="lFV-zf-x56"/>
+                                    <constraint firstItem="WDI-4f-h8P" firstAttribute="height" secondItem="wqQ-6S-b2U" secondAttribute="height" id="mEt-fZ-bG6"/>
+                                    <constraint firstItem="WDI-4f-h8P" firstAttribute="leading" secondItem="wqQ-6S-b2U" secondAttribute="leading" id="nmy-uU-XgP"/>
+                                    <constraint firstAttribute="bottom" secondItem="WDI-4f-h8P" secondAttribute="bottom" id="ntB-5G-fxF"/>
+                                    <constraint firstItem="myw-Kp-9FI" firstAttribute="height" secondItem="wqQ-6S-b2U" secondAttribute="height" id="oy7-CS-Qvn"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.92158782482147217" green="0.92156791687011719" blue="0.92157191038131714" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wqQ-6S-b2U" secondAttribute="trailing" id="06m-aK-Ddp"/>
                             <constraint firstItem="Xs6-Hl-jbC" firstAttribute="top" secondItem="9S3-RJ-tTG" secondAttribute="bottom" id="0m9-Vp-aoo"/>
-                            <constraint firstItem="myw-Kp-9FI" firstAttribute="top" secondItem="Xs6-Hl-jbC" secondAttribute="bottom" constant="10" id="1DK-Ui-VAu"/>
                             <constraint firstAttribute="trailing" secondItem="Xs6-Hl-jbC" secondAttribute="trailing" id="3C1-We-D19"/>
                             <constraint firstItem="9S3-RJ-tTG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="3nu-dB-lH6"/>
-                            <constraint firstAttribute="trailing" secondItem="bno-jx-toV" secondAttribute="trailing" constant="10" id="60Y-rj-ubP"/>
-                            <constraint firstItem="WDI-4f-h8P" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="6aa-zh-a9T"/>
                             <constraint firstAttribute="trailing" secondItem="9S3-RJ-tTG" secondAttribute="trailing" id="7M5-Ud-TGA"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="myw-Kp-9FI" secondAttribute="bottom" constant="5" id="Fm3-VQ-ZQH"/>
-                            <constraint firstItem="bno-jx-toV" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1/5" id="IFb-j2-wkv"/>
                             <constraint firstItem="Xs6-Hl-jbC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IGq-IK-bOW"/>
-                            <constraint firstItem="myw-Kp-9FI" firstAttribute="leading" secondItem="WDI-4f-h8P" secondAttribute="trailing" constant="10" id="JpO-vr-dV9"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WDI-4f-h8P" secondAttribute="bottom" constant="5" id="MFD-eD-iNJ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bno-jx-toV" secondAttribute="bottom" constant="5" id="Pdr-WK-7zb"/>
-                            <constraint firstItem="WDI-4f-h8P" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1/15" id="Pww-sy-SDJ"/>
+                            <constraint firstItem="wqQ-6S-b2U" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="1/25" id="MOy-cM-3hp"/>
                             <constraint firstItem="9S3-RJ-tTG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SJS-rK-3Yi"/>
-                            <constraint firstItem="myw-Kp-9FI" firstAttribute="height" secondItem="WDI-4f-h8P" secondAttribute="height" id="iOx-FM-pSf"/>
-                            <constraint firstItem="bno-jx-toV" firstAttribute="height" secondItem="myw-Kp-9FI" secondAttribute="height" id="lxZ-4T-rrs"/>
-                            <constraint firstItem="myw-Kp-9FI" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="3/4.6" id="oZb-xf-Jgy"/>
+                            <constraint firstItem="wqQ-6S-b2U" firstAttribute="top" secondItem="Xs6-Hl-jbC" secondAttribute="bottom" constant="5" id="VOW-tv-joO"/>
+                            <constraint firstItem="wqQ-6S-b2U" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eRU-hc-VJl"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wqQ-6S-b2U" secondAttribute="bottom" constant="5" id="tSi-VF-ZFm"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Chat" image="message-7.png" selectedImage="message-7.png" id="UZs-Zs-Wcn"/>
                     <connections>
                         <outlet property="allActionImageView" destination="WDI-4f-h8P" id="IMR-2w-SaJ"/>
                         <outlet property="inputMsgField" destination="myw-Kp-9FI" id="YbY-cl-0HT"/>
+                        <outlet property="sendViewConstraint" destination="tSi-VF-ZFm" id="K94-Pk-Ksc"/>
                         <outlet property="tableView" destination="Xs6-Hl-jbC" id="8Sd-D6-ND9"/>
                     </connections>
                 </viewController>
@@ -307,7 +322,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZ5-4n-dAg">
-                                            <rect key="frame" x="109" y="29.333333333333343" width="256" height="21.000000000000007"/>
+                                            <rect key="frame" x="109" y="29.333333333333336" width="256" height="21.000000000000007"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

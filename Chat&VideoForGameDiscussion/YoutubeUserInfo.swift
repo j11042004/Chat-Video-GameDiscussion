@@ -30,8 +30,7 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
     private var searchResults = [[String : String]]()
     
     func googleSignIn() {
-        // uidelefgete 涉及到ui 所以要再被呼叫的地方牽上 delegate
-        signIn?.delegate = self
+        
         signIn?.clientID = clientID
         // 要做不然無法跳到權限畫面
         signIn?.scopes = scopes

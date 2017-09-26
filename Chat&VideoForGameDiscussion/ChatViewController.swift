@@ -22,10 +22,9 @@ var count = 0
 class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewDataSource , UIImagePickerControllerDelegate , UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var allActionImageView: UIImageView!
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inputMsgField: UITextField!
-    
+    @IBOutlet weak var sendViewConstraint: NSLayoutConstraint!
     var MAX_FRAME_WIDTH = CGFloat()
     
     var messages = [[Any]]()
@@ -35,7 +34,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     
     let socket = SocketFunction.standrad.socketClient
     
-    
+    var keyboardHeight : CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +68,11 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(allActionImageTap))
         allActionImageView.isUserInteractionEnabled = true
         allActionImageView.addGestureRecognizer(tapGesture)
+        
+        // add get keyboard's hight notification when keyboard will show or hide
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -411,12 +415,63 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     }
     // touch event function
     func handleTap(sender: UITapGestureRecognizer) {
-        // must do the check ,otherwise the celle selected func will not do everyThing
+        // must do the check ,otherwise the cell selected func will not do everyThing
         if sender.state == .ended {
             inputMsgField.resignFirstResponder()
         }
         sender.cancelsTouchesInView = false
         
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+       
+    }
+    
+    
+    func keyboardWillShow(_ notification:Notification) {
+        adjustingHeight(true, notification: notification)
+    }
+    
+    func keyboardWillHide(_ notification:Notification) {
+        adjustingHeight(false, notification: notification)
+    }
+    
+    func adjustingHeight(_ show:Bool, notification:Notification) {
+        
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        if keyboardHeight == nil || keyboardHeight == 0.0 {
+            guard let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else {
+                return
+            }
+            keyboardHeight = keyboardFrame.height * 5 / 6
+            
+        }
+        
+        guard let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval else {
+            return
+        }
+        
+        let changeInHeight : CGFloat = keyboardHeight! * (show ? 1 : -1)
+        
+        UIView.animate(withDuration: animationDurarion, animations: { () -> Void in
+            self.sendViewConstraint.constant += changeInHeight
+            if self.sendViewConstraint.constant < 5{
+                self.sendViewConstraint.constant = 5
+            }
+            
+        })
+        
+    }
+    
+    // check viewcontroller transtrate
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { (contextAnimate) in
+            
+        }) { (context) in
+            
+        }
     }
     /*
     // MARK: - Navigation
