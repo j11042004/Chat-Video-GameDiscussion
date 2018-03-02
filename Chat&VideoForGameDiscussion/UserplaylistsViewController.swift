@@ -22,7 +22,8 @@ class UserplaylistsViewController: UIViewController,UITableViewDelegate,UITableV
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
-        self.automaticallyAdjustsScrollViewInsets = false
+//        self.automaticallyAdjustsScrollViewInsets = false
+        
         self.title = "播放清單"
         
         signOutBtn = UIBarButtonItem(title: "Google 登出", style: UIBarButtonItemStyle.plain, target: self, action: #selector(googleSignOut))
@@ -32,7 +33,7 @@ class UserplaylistsViewController: UIViewController,UITableViewDelegate,UITableV
     override func viewWillAppear(_ animated: Bool) {
         getUserPlayLists()
     }
-    func googleSignOut(){
+    @objc func googleSignOut(){
         
         YoutubeUserInfo.standard.googelSignOut()
         self.navigationController?.popViewController(animated: true)
@@ -49,7 +50,7 @@ class UserplaylistsViewController: UIViewController,UITableViewDelegate,UITableV
         youtubeService.executeQuery(playListsQuery, delegate: self, didFinish: #selector(getPlaylistsInfo(ticket:playlistsListResponse:error:)))
     }
     
-    func getPlaylistsInfo(ticket: GTLRServiceTicket , playlistsListResponse response :GTLRYouTube_PlaylistListResponse ,error: Error?){
+    @objc func getPlaylistsInfo(ticket: GTLRServiceTicket , playlistsListResponse response :GTLRYouTube_PlaylistListResponse ,error: Error?){
         if let error = error {
             print("PlaylistsList Error :\(error)")
             return

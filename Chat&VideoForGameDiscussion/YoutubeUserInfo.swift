@@ -82,7 +82,7 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
         youtubeService.executeQuery(playlistItemsQuery, delegate: self, didFinish: #selector(analysisPlaylistsItemResult(ticket:playlistResponse:error:)))
     }
     // get playList's all videos more Information
-    func analysisPlaylistsItemResult(ticket: GTLRServiceTicket ,
+    @objc func analysisPlaylistsItemResult(ticket: GTLRServiceTicket ,
                                      playlistResponse response :GTLRYouTube_PlaylistItemListResponse ,
                                      error: Error?) {
         if let error = error {
@@ -155,7 +155,7 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
         
         youtubeService.executeQuery(insertItemQuery, delegate: self, didFinish: #selector(analysisPlaylistItemInsert(ticket:playListResponse:error:)))
     }
-    func analysisPlaylistItemInsert(ticket: GTLRServiceTicket ,
+    @objc func analysisPlaylistItemInsert(ticket: GTLRServiceTicket ,
                                     playListResponse response :GTLRYouTube_PlaylistItemListResponse ,
                                     error: Error?){
         if let error = error {
@@ -178,7 +178,7 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
         youtubeService.executeQuery(searchListsQuery, delegate: self, didFinish: #selector(analysisSearchList(ticket:searchListResponse:error:)))
     }
     
-    func analysisSearchList(ticket: GTLRServiceTicket ,
+    @objc func analysisSearchList(ticket: GTLRServiceTicket ,
                             searchListResponse response :GTLRYouTube_SearchListResponse ,
                             error: Error?){
         if let error = error {

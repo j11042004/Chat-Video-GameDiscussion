@@ -10,10 +10,17 @@ import UIKit
 import SocketIO
 
 class SocketFunction: NSObject {
-//    static let standrad = SocketFunction()
-//    let socketClient = SocketIOClient(manager: <#T##SocketManagerSpec#>, nsp: <#T##String#>)
-//    let socketClient = SocketIOClient(manager: URL(string: "https://chatandvideosocketchat.herokuapp.com/")! as! SocketManagerSpec, nsp: "")
-    
-    
-    
+    static let standrad = SocketFunction()
+    public var manager : SocketManager!
+    public var socketClient : SocketIOClient!
+    override init() {
+        super.init()
+        if let url = URL(string: "https://chatandvideosocketchat.herokuapp.com/"){
+            NSLog("socket Url is not nil")
+            self.manager = SocketManager(socketURL:url)
+            self.socketClient = self.manager.defaultSocket
+        }
+        
+    }
 }
+

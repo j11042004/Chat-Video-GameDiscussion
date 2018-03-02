@@ -84,7 +84,7 @@ class YoutubeVideoViewController: UIViewController {
         youtubeService.executeQuery(videoListQuery, delegate: self, didFinish: #selector(analysisVideoList(ticket:videoListResponse:error:)))
     }
     
-    func analysisVideoList(ticket: GTLRServiceTicket , videoListResponse response :GTLRYouTube_VideoListResponse ,error: Error?){
+    @objc func analysisVideoList(ticket: GTLRServiceTicket , videoListResponse response :GTLRYouTube_VideoListResponse ,error: Error?){
         if let error = error {
             print("videoList Error :\(error)")
             return

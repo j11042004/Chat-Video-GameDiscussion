@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let socketClient = SocketFunction.standrad.socketClient
+private let socketClient = SocketFunction.standrad.manager
 class ImageDrawViewController: UIViewController {
     
     @IBOutlet weak var canvas: Canves!
@@ -101,7 +101,8 @@ class ImageDrawViewController: UIViewController {
         // add base64 jpeg to header,let the server can analyse
         let finalBase64String = "data:image/jpeg;base64,\(imageStr)"
         
-        socketClient.emit("sendImage", finalBase64String)
+//        socketClient.emit("sendImage", finalBase64String)
+        socketClient?.emitAll("sendImage", withItems: [finalBase64String])
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func cancelAction(_ sender: Any) {

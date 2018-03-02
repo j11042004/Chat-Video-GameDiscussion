@@ -41,7 +41,7 @@ class PlaylistVideoTableViewController: UITableViewController {
     }
     
     // MARK: - normal Function
-    func reloadTableView(notificationObj:Notification){
+    @objc func reloadTableView(notificationObj:Notification){
         if let notificationResult = notificationObj.object as? [[String: String]]{
             listVideos = notificationResult
             print("listVideos count : \(listVideos.count)")

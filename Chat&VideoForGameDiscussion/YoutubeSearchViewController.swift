@@ -40,7 +40,7 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     
     
 // MARK: - Normal Function
-    func reloadTableView(notificationObj:Notification){
+    @objc func reloadTableView(notificationObj:Notification){
         if let notificationResult = notificationObj.object as? [[String: String]]{
             searchResults = notificationResult
             print("searchResults count:\(searchResults.count)")
@@ -118,7 +118,7 @@ class YoutubeSearchViewController: UIViewController,UISearchBarDelegate,UITableV
     
     // MARK: - close the keyBoard
     // touch event function
-    func handleTap(sender: UITapGestureRecognizer) {
+    @objc func handleTap(sender: UITapGestureRecognizer) {
         // must do the check ,otherwise the celle selected func will not do everyThing
         if sender.state == .ended {
             searchBar.resignFirstResponder()

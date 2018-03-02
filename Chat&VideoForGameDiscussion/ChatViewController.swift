@@ -33,6 +33,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     let resizeImage = ResizeImage()
     
     let socket = SocketFunction.standrad.socketClient
+    let socketManager = SocketFunction.standrad.manager
     
     var keyboardHeight : CGFloat?
     
@@ -43,7 +44,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         resizeImage.setMaxWidth(maxWidth: MAX_FRAME_WIDTH)
         
         // Connect To Socket.io's Chat Room
-        socket.connect(timeoutAfter: 20) {
+        socket?.connect(timeoutAfter: 20) {
             print("Time out of connect")
             self.connectFailAlert()
         }
@@ -51,8 +52,8 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         
         // 為了讓socket.id 加入server 中的 socket.id array
         // 連上socket Server 時做的事情
-        socket.on(clientEvent: SocketClientEvent.connect) { [weak self](data, ack) in
-            self!.socket.emit("addNewUser", self!.setUserName)
+        socket?.on(clientEvent: SocketClientEvent.connect) { [weak self](data, ack) in
+            self!.socket?.emit("addNewUser", self!.setUserName)
             
         }
         
@@ -89,7 +90,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     // Do something when the app will release
     func applicationWillTerminate(_ application: UIApplication){
         // leave the socket.io chatroom
-        socket.disconnect()
+        socket?.disconnect()
     }
     
 //  MARK: - Button Action
@@ -103,7 +104,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             return
         }
         // Send the message to the Socjet.io ChatRoom
-        socket.emit(EMIT_CHAT_MESSAGE, message)
+        socket?.emit(EMIT_CHAT_MESSAGE, message)
         inputMsgField.text = ""
         
         
@@ -120,7 +121,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
 //  MARK: - Soket Action
     // New message add in the socket.io chat room
     func addMessageHandles() {
-        socket.on(EMIT_CHAT_MESSAGE) { [weak self](data, ack) in
+        socket?.on(EMIT_CHAT_MESSAGE) { [weak self](data, ack) in
             guard let userName = data[0] as? String else {
                 print("\(data[0]) is not String")
                 return
@@ -133,7 +134,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             // 把抓到的message 顯示到Cell上
             self!.addNewMessage(user: userName, message: message)
         }
-        socket.on(SEND_IMAGE) { [weak self](data, ack) in
+        socket?.on(SEND_IMAGE) { [weak self](data, ack) in
             guard let userName = data[0] as? String else{
                 print("data is nil")
                 return
@@ -149,11 +150,11 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     }
     // Change User's nickName
     func changeUserName(nickName : String){
-        socket.emit(CHANGE_USER_NAME, nickName)
+        socket?.emit(CHANGE_USER_NAME, nickName)
     }
     // Get Self userID
     func getUserID() {
-        socket.on("getUserId") { [weak self](data, ack) in
+        socket?.on("getUserId") { [weak self](data, ack) in
             guard let getID = data[0] as? String else {
                 print("\(data[0]) is not String")
                 return
@@ -177,10 +178,13 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         let alert = UIAlertController(title: "", message: "連線失敗或預期，請檢查網路或再次連線", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
         let reConnect = UIAlertAction.init(title: "重新連線", style: .destructive) { (action) in
-            self.socket.reconnect()
-            
-            self.socket.on(clientEvent: SocketClientEvent.connect) { [weak self](data, ack) in
-                self!.socket.emit("addNewUser", self!.setUserName)
+
+//            self.socketManager.reconnect()
+            self.socket?.on(clientEvent: SocketClientEvent.reconnect, callback: { [weak self](data, ack) in
+                self!.socket?.emit("addNewUser", self!.setUserName)
+            })
+            self.socket?.on(clientEvent: SocketClientEvent.connect) { [weak self](data, ack) in
+                self!.socket?.emit("addNewUser", self!.setUserName)
                 
             }
         }
@@ -401,7 +405,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         // add base64 jpeg to header,let the server can analyse
         let finalBase64String = "data:image/jpeg;base64,\(imageStr)"
         // send image to server
-        socket.emit(SEND_IMAGE, finalBase64String)
+        socket?.emit(SEND_IMAGE, finalBase64String)
         // Important close the Edite View
         picker.dismiss(animated: true, completion: nil)
     }
@@ -429,11 +433,11 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
     }
     
     
-    func keyboardWillShow(_ notification:Notification) {
+    @objc func keyboardWillShow(_ notification:Notification) {
         adjustingHeight(true, notification: notification)
     }
     
-    func keyboardWillHide(_ notification:Notification) {
+    @objc func keyboardWillHide(_ notification:Notification) {
         adjustingHeight(false, notification: notification)
     }
     
