@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApp, annotation: options[.annotation])
     }
-
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

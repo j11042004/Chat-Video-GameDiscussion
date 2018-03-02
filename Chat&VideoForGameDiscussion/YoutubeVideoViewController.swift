@@ -40,7 +40,7 @@ class YoutubeVideoViewController: UIViewController {
 
     }
     override func viewDidAppear(_ animated: Bool) {
-        
+        NSLog("Video ID :\(videoID)")
         videoPlayerVc.videoIdentifier = videoID
         videoPlayerVc.present(in: self.webView)
         videoPlayerVc.moviePlayer.prepareToPlay()

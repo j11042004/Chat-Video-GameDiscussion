@@ -66,6 +66,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         
         // add imageView Interaction event
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(allActionImageTap))
+        //使 UiView 可以被操作
         allActionImageView.isUserInteractionEnabled = true
         allActionImageView.addGestureRecognizer(tapGesture)
         
@@ -209,7 +210,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         }
     }
     // allActionImageview tap event function
-    func allActionImageTap(){
+    @objc func allActionImageTap(){
         print("allActionImageTap")
         let alert = UIAlertController(title: "", message: " 請選取要進行的動作", preferredStyle: .actionSheet)
         
@@ -408,13 +409,13 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         picker.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - close the keyBoard
+    // MARK: - TextField Delegate Func , close the keyBoard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }
     // touch event function
-    func handleTap(sender: UITapGestureRecognizer) {
+    @objc func handleTap(sender: UITapGestureRecognizer) {
         // must do the check ,otherwise the cell selected func will not do everyThing
         if sender.state == .ended {
             inputMsgField.resignFirstResponder()
@@ -436,6 +437,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
         adjustingHeight(false, notification: notification)
     }
     
+    // 計算並取得 鍵盤高度
     func adjustingHeight(_ show:Bool, notification:Notification) {
         
         guard let userInfo = notification.userInfo else {
@@ -460,7 +462,7 @@ class ChatViewController: UIViewController, UITableViewDelegate ,UITableViewData
             if self.sendViewConstraint.constant < 5{
                 self.sendViewConstraint.constant = 5
             }
-            
+
         })
         
     }

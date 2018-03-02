@@ -82,7 +82,9 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
         youtubeService.executeQuery(playlistItemsQuery, delegate: self, didFinish: #selector(analysisPlaylistsItemResult(ticket:playlistResponse:error:)))
     }
     // get playList's all videos more Information
-    func analysisPlaylistsItemResult(ticket: GTLRServiceTicket , playlistResponse response :GTLRYouTube_PlaylistItemListResponse ,error: Error?) {
+    func analysisPlaylistsItemResult(ticket: GTLRServiceTicket ,
+                                     playlistResponse response :GTLRYouTube_PlaylistItemListResponse ,
+                                     error: Error?) {
         if let error = error {
             print("error:\(error)")
             return
@@ -109,7 +111,8 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
                 listVideos.append(videoInfo )
             }
             // use notification to Reload TableView
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PlaylistItemsTableViewReload"), object: listVideos )
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PlaylistItemsTableViewReload"),
+                                            object: listVideos )
             // check if the playlist has more than 50 items
             if let pageToken = response.nextPageToken  {
                 requestPlaylistItemsInfo(playListID: playlistId, pagetoken: pageToken)
@@ -129,7 +132,9 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
     }
     
     // PlaylistItems.insert Function
-    func fetchPlaylistInsertItem(playlistId: String, insertVideoId: String ,insertKind: String){
+    func fetchPlaylistInsertItem(playlistId: String,
+                                 insertVideoId: String ,
+                                 insertKind: String){
         // Set playlist info
         let playlistItem = GTLRYouTube_PlaylistItem()
         playlistItem.snippet = GTLRYouTube_PlaylistItemSnippet()
@@ -150,7 +155,9 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
         
         youtubeService.executeQuery(insertItemQuery, delegate: self, didFinish: #selector(analysisPlaylistItemInsert(ticket:playListResponse:error:)))
     }
-    func analysisPlaylistItemInsert(ticket: GTLRServiceTicket , playListResponse response :GTLRYouTube_PlaylistItemListResponse ,error: Error?){
+    func analysisPlaylistItemInsert(ticket: GTLRServiceTicket ,
+                                    playListResponse response :GTLRYouTube_PlaylistItemListResponse ,
+                                    error: Error?){
         if let error = error {
             print("searchList Error :\(error)")
             return
@@ -171,7 +178,9 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
         youtubeService.executeQuery(searchListsQuery, delegate: self, didFinish: #selector(analysisSearchList(ticket:searchListResponse:error:)))
     }
     
-    func analysisSearchList(ticket: GTLRServiceTicket , searchListResponse response :GTLRYouTube_SearchListResponse ,error: Error?){
+    func analysisSearchList(ticket: GTLRServiceTicket ,
+                            searchListResponse response :GTLRYouTube_SearchListResponse ,
+                            error: Error?){
         if let error = error {
             print("searchList Error :\(error)")
             return
@@ -242,11 +251,6 @@ class YoutubeUserInfo: NSObject,GIDSignInDelegate
         }
     }
 
-    //MARK: - Notificition
-    func chooseColor() {
-        // use notification to Reload TableView
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTableView"), object: searchResults )
-        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "reloadTableView"), object: nil)
-    }
+    
 
 }

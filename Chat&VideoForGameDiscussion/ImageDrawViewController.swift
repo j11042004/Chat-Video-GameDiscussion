@@ -40,7 +40,7 @@ class ImageDrawViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 // MARK: -Normal Function
-    func setHistoryImages(notification : Notification){
+    @objc func setHistoryImages(notification : Notification){
         if let objectImages = notification.object as? [UIImage] {
             allImages = objectImages
             nowImageIndex = objectImages.count - 1

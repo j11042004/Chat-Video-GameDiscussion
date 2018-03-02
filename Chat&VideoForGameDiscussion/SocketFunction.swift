@@ -10,8 +10,10 @@ import UIKit
 import SocketIO
 
 class SocketFunction: NSObject {
-    static let standrad = SocketFunction()
-    let socketClient = SocketIOClient(socketURL: URL(string: "https://chatandvideosocketchat.herokuapp.com/")!)
+//    static let standrad = SocketFunction()
+//    let socketClient = SocketIOClient(manager: <#T##SocketManagerSpec#>, nsp: <#T##String#>)
+//    let socketClient = SocketIOClient(manager: URL(string: "https://chatandvideosocketchat.herokuapp.com/")! as! SocketManagerSpec, nsp: "")
+    
     
     
 }

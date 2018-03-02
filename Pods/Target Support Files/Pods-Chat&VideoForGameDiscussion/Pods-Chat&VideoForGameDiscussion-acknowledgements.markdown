@@ -621,7 +621,7 @@ This application makes use of the following third party libraries:
 
 ## GoogleSignIn
 
-Copyright 2017 Google
+Copyright 2018 Google
 
 ## GoogleToolboxForMac
 
@@ -1063,7 +1063,7 @@ Apache License
    limitations under the License.
 
 
-## StarscreamSocketIO
+## Starscream
 
                               Apache License
                            Version 2.0, January 2004
